@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Miss Sara</title>
+<meta name="description" content="A bouquet of light pink roses for Sara, from Howard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum:#4A2545;
+    --dusk:#7A3B63;
+    --coral:#EE8660;
+    --gold:#F6B93B;
+    --blush:#F7CAD4;
+    --rose:#D17A8F;
+    --cream:#FFF7F2;
+    --script:"Pinyon Script", cursive;
+    --serif:"Fraunces", Georgia, serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden;background:#3B1E54}
+  body{font-family:var(--serif);color:var(--plum);-webkit-font-smoothing:antialiased}
+
+  /* ---------- Scene: sunflower field at sunset ---------- */
+  #scene{position:fixed;inset:0;width:100%;height:100%;display:block}
+  #veil{
+    position:fixed;inset:0;pointer-events:none;
+    background:
+      radial-gradient(120% 80% at 50% 40%, rgba(255,238,240,.92), rgba(250,214,214,.86) 60%, rgba(226,170,190,.9));
+    transition:opacity 1.8s ease;
+  }
+  body[data-step="1"] #veil,
+  body[data-step="2"] #veil,
+  body[data-step="3"] #veil{opacity:0}
+
+  /* ---------- Screens ---------- */
+  .screen{
+    position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:24px 20px 120px;text-align:center;
+    opacity:0;visibility:hidden;transform:translateY(14px);
+    transition:opacity .8s ease, transform .8s ease, visibility 0s linear .8s;
+  }
+  .screen.active{opacity:1;visibility:visible;transform:none;transition:opacity .8s ease .15s, transform .8s ease .15s}
+
+  .note{
+    width:min(92vw,520px);
+    padding:44px 36px 40px;
+    background:rgba(255,247,242,.82);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-radius:4px 28px 4px 28px;
+    box-shadow:0 20px 60px -20px rgba(74,37,69,.45);
+  }
+  .script{font-family:var(--script);font-weight:400;line-height:1.05;color:var(--plum)}
+  .hello{font-size:clamp(3.4rem,11vw,5.2rem);margin-bottom:.35em}
+  .lede{font-size:clamp(1.2rem,4.2vw,1.5rem);font-weight:300;line-height:1.5;margin-bottom:1.1em}
+  .hint{font-style:italic;font-weight:300;font-size:1rem;color:var(--dusk);line-height:1.6}
+
+  /* Bouquet screen */
+  #s1{justify-content:flex-end;padding-bottom:112px}
+  .bouquet{
+    width:min(88vw,520px);height:auto;max-height:68vh;
+    filter:drop-shadow(0 24px 30px rgba(40,10,40,.45));
+    transform:translateY(40px) scale(.92);opacity:0;
+    transition:transform 1.4s cubic-bezier(.2,.8,.2,1) .3s, opacity 1s ease .3s;
+  }
+  #s1.active .bouquet{transform:none;opacity:1}
+  .bloom{transform:scale(0)}
+  #s1.active .bloom{animation:bloom 1s cubic-bezier(.2,.9,.3,1.25) forwards}
+  @keyframes bloom{from{transform:scale(0) rotate(-40deg)}to{transform:scale(1) rotate(0)}}
+  .caption{
+    margin-top:14px;padding:10px 28px 14px;border-radius:40px;color:var(--cream);
+    background:radial-gradient(closest-side,rgba(58,24,52,.55),rgba(58,24,52,0));
+    text-shadow:0 2px 12px rgba(40,10,40,.7);
+  }
+  .caption .script{color:var(--cream);font-size:clamp(2.2rem,7vw,3rem)}
+  .caption p{font-weight:300;font-style:italic;font-size:1rem;margin-top:4px;opacity:.95}
+
+  /* Message screen */
+  .miss{font-size:clamp(3rem,10vw,4.4rem);margin-bottom:.4em}
+  .body-copy{font-size:clamp(1.08rem,3.8vw,1.28rem);font-weight:300;line-height:1.7;max-width:34ch;margin:0 auto 1.1em}
+
+  /* Couple screen */
+  #s3 .note{padding:22px 22px 30px}
+  .couple{width:100%;max-width:340px;height:auto;display:block;margin:0 auto}
+  .names{font-size:clamp(2.6rem,9vw,3.4rem);margin-top:6px}
+  .sign{font-weight:300;font-style:italic;margin-top:6px;color:var(--dusk)}
+  .float-heart{animation:beat 2.2s ease-in-out infinite;transform-origin:200px 52px}
+  @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.08)}}
+
+  /* ---------- Navigation ---------- */
+  nav{
+    position:fixed;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%);
+    display:flex;align-items:center;gap:18px;z-index:10;
+  }
+  button{
+    font-family:var(--serif);font-size:1.02rem;font-weight:500;cursor:pointer;
+    border:none;border-radius:999px;padding:13px 26px;min-width:108px;
+    white-space:nowrap;transition:transform .2s ease, background .2s ease, opacity .3s ease;
+  }
+  button:active{transform:scale(.96)}
+  button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+  #back{background:rgba(255,247,242,.78);color:var(--plum)}
+  #next{background:var(--rose);color:#fff;box-shadow:0 8px 24px -8px rgba(122,59,99,.8)}
+  #next:hover{background:#C06880}
+  #back[hidden]{display:inline-block;visibility:hidden}
+  .dots{display:flex;gap:8px}
+  .dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,247,242,.5);transition:background .3s, transform .3s}
+  .dots span.on{background:#fff;transform:scale(1.35)}
+  body[data-step="0"] .dots span{background:rgba(122,59,99,.3)}
+  body[data-step="0"] .dots span.on{background:var(--rose)}
+
+  /* ---------- Falling petals ---------- */
+  #petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1.5s ease}
+  body:not([data-step="0"]) #petals{opacity:1}
+  .petal{
+    position:absolute;top:-30px;width:14px;height:18px;
+    background:linear-gradient(135deg,#FBE1E7,#F2A9BA);
+    border-radius:150% 0 150% 0;opacity:.85;
+    animation:fall linear infinite;
+  }
+  @keyframes fall{
+    0%{transform:translate(0,-5vh) rotate(0)}
+    50%{transform:translate(var(--sway),50vh) rotate(200deg)}
+    100%{transform:translate(0,110vh) rotate(420deg)}
+  }
+
+  @media (max-height:640px){
+    .note{padding:28px 24px}
+    .bouquet{max-height:58vh}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    .bloom{transform:none}
+    #petals{display:none}
+  }
+</style>
+</head>
+<body data-step="0">
+
+<!-- Shared shapes (sunflower + rose) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="sunflower">
+      <g id="petalRingA"></g>
+      <circle r="15" fill="#5A3312"/>
+      <circle r="10.5" fill="#3A1F0C"/>
+      <circle r="15" fill="none" stroke="#7A4A1C" stroke-width="2"/>
+    </g>
+    <g id="rose">
+      <g fill="#F8CFD9" stroke="#E7A6B8" stroke-width="1.6">
+        <circle cx="0" cy="-27" r="24"/><circle cx="25.7" cy="-8.3" r="24"/>
+        <circle cx="15.9" cy="21.8" r="24"/><circle cx="-15.9" cy="21.8" r="24"/>
+        <circle cx="-25.7" cy="-8.3" r="24"/>
+      </g>
+      <g fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-linecap="round">
+        <path d="M-14 -40 Q0 -48 14 -40"/><path d="M34 -16 Q42 -2 36 12"/><path d="M-34 -16 Q-42 -2 -36 12"/>
+      </g>
+      <g fill="#F4BCCB" stroke="#E29AAE" stroke-width="1.5">
+        <circle cx="9" cy="-12" r="17"/><circle cx="13" cy="7" r="17"/>
+        <circle cx="-4" cy="14" r="17"/><circle cx="-15" cy="1" r="17"/><circle cx="-6" cy="-14" r="17"/>
+      </g>
+      <circle r="13" fill="#EFA9BC" stroke="#D98BA1" stroke-width="1.5"/>
+      <path d="M1 -1 a2.5 2.5 0 1 1 -3 3 a6 6 0 1 1 10 -3 a10 10 0 1 1 -16 7" fill="none" stroke="#C97890" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <pattern id="skirtPrint" width="30" height="30" patternUnits="userSpaceOnUse">
+      <rect width="30" height="30" fill="#BFD8EC"/>
+      <ellipse cx="3" cy="12" rx="4" ry="2" fill="#7FA66E" transform="rotate(-30 3 12)"/>
+      <circle cx="8" cy="8" r="5" fill="#F29AAE"/><circle cx="8" cy="8" r="2" fill="#DB6A86"/>
+      <ellipse cx="18" cy="27" rx="3.5" ry="1.8" fill="#7FA66E" transform="rotate(25 18 27)"/>
+      <circle cx="23" cy="22" r="4" fill="#F7B8C6"/><circle cx="23" cy="22" r="1.6" fill="#DB6A86"/>
+    </pattern>
+  </defs>
+</svg>
+
+<!-- Background: sunflower field under a sunset -->
+<svg id="scene" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B1E54"/>
+      <stop offset=".32" stop-color="#8E3B6C"/>
+      <stop offset=".52" stop-color="#E4705E"/>
+      <stop offset=".64" stop-color="#F7A35C"/>
+      <stop offset=".7" stop-color="#FDD38A"/>
+    </linearGradient>
+    <radialGradient id="sunGlow">
+      <stop offset="0" stop-color="#FFF1C4" stop-opacity=".95"/>
+      <stop offset=".35" stop-color="#FFC56E" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#F7864E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sunDisc">
+      <stop offset="0" stop-color="#FFF8DC"/>
+      <stop offset="1" stop-color="#FFC266"/>
+    </radialGradient>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F9A865" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#F9A865" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6B6A2E"/>
+      <stop offset="1" stop-color="#2E3A1A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="600" cy="505" r="330" fill="url(#sunGlow)"/>
+  <circle cx="600" cy="505" r="92" fill="url(#sunDisc)"/>
+  <g fill="#F9B38A" opacity=".55">
+    <ellipse cx="260" cy="230" rx="150" ry="14"/><ellipse cx="340" cy="252" rx="90" ry="9"/>
+    <ellipse cx="930" cy="190" rx="170" ry="15"/><ellipse cx="840" cy="214" rx="100" ry="9"/>
+    <ellipse cx="620" cy="330" rx="210" ry="10" fill="#FFD1A1"/>
+  </g>
+  <path d="M0 505 Q150 470 320 492 T640 488 T960 480 T1200 494 V800 H0Z" fill="#8A4A63"/>
+  <path d="M0 520 Q200 500 420 512 T820 508 T1200 516 V800 H0Z" fill="#5E4A45"/>
+  <rect y="515" width="1200" height="285" fill="url(#ground)"/>
+  <g id="field"></g>
+  <rect y="505" width="1200" height="90" fill="url(#haze)"/>
+</svg>
+
+<div id="veil"></div>
+<div id="petals" aria-hidden="true"></div>
+
+<main>
+  <!-- 1. Greeting -->
+  <section class="screen active" id="s0" aria-label="Greeting">
+    <div class="note">
+      <h1 class="script hello">Hi Miss Sara,</h1>
+      <p class="lede">I hope you are having a blessed day.</p>
+      <p class="hint">Please click next to see what happens next.</p>
+    </div>
+  </section>
+
+  <!-- 2. Bouquet -->
+  <section class="screen" id="s1" aria-label="A bouquet of light pink roses">
+    <svg class="bouquet" viewBox="0 0 600 760" role="img" aria-label="A large bouquet of light pink roses wrapped in cream paper with a rose ribbon">
+      <g stroke="#4D7A36" stroke-width="7" stroke-linecap="round">
+        <line x1="292" y1="690" x2="278" y2="742"/><line x1="300" y1="690" x2="300" y2="748"/><line x1="308" y1="690" x2="322" y2="740"/>
+      </g>
+      <path d="M300 705 L40 330 L118 238 L172 330 L300 312 L428 330 L482 238 L560 330 Z" fill="#F1DDD3"/>
+      <path d="M118 238 L172 330 L140 332 Z M482 238 L428 330 L460 332 Z" fill="#E4C8BC"/>
+      <g id="leaves"></g>
+      <g id="babysBreath"></g>
+      <g id="roses"></g>
+      <path d="M300 708 L66 372 Q185 424 300 406 Q415 424 534 372 Z" fill="#F5CFD8"/>
+      <path d="M300 712 L96 398 Q200 446 300 428 Q400 446 504 398 Z" fill="#FFF6F1"/>
+      <g stroke="#E6CFC4" stroke-width="2" fill="none">
+        <path d="M300 712 L208 438"/><path d="M300 712 L392 438"/><path d="M96 398 Q200 446 300 428 Q400 446 504 398"/>
+      </g>
+      <g transform="translate(300 585)">
+        <path d="M-6 8 Q-30 70 -52 118 L-36 112 L-30 128 Q-10 70 4 12 Z" fill="#B85E75"/>
+        <path d="M6 8 Q26 72 52 116 L36 112 L32 128 Q10 70 -4 12 Z" fill="#C4687F"/>
+        <path d="M0 0 Q-44 -46 -70 -18 Q-78 12 0 4 Z" fill="#D17A8F"/>
+        <path d="M0 0 Q44 -46 70 -18 Q78 12 0 4 Z" fill="#D17A8F"/>
+        <path d="M-6 -2 Q-40 -30 -58 -14" stroke="#B85E75" stroke-width="3" fill="none"/>
+        <path d="M6 -2 Q40 -30 58 -14" stroke="#B85E75" stroke-width="3" fill="none"/>
+        <ellipse cx="0" cy="2" rx="13" ry="11" fill="#B85E75"/>
+        <ellipse cx="-3" cy="-1" rx="5" ry="3" fill="#E3A0B1" opacity=".7"/>
+      </g>
+    </svg>
+    <div class="caption">
+      <h2 class="script">These are for you, Sara</h2>
+      <p>Click next when you're ready.</p>
+    </div>
+  </section>
+
+  <!-- 3. Sweet message -->
+  <section class="screen" id="s2" aria-label="A message for Sara">
+    <div class="note">
+      <h2 class="script miss">Missing you &amp; thinking of you</h2>
+      <p class="body-copy">Every sunset reminds me of your smile. Wherever you are today, I hope you feel how loved and cared for you are.</p>
+      <p class="hint">Click next for one last surprise.</p>
+    </div>
+  </section>
+
+  <!-- 4. The couple -->
+  <section class="screen" id="s3" aria-label="Sara and Howard">
+    <div class="note">
+      <svg class="couple" viewBox="0 0 400 530" role="img" aria-label="Cartoon of Sara and Howard standing together at sunset">
+        <defs>
+          <radialGradient id="cSun" cx=".5" cy=".55">
+            <stop offset="0" stop-color="#FFE7B0"/>
+            <stop offset=".6" stop-color="#F9B08A"/>
+            <stop offset="1" stop-color="#E88DA3"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="250" r="182" fill="url(#cSun)"/>
+        <path d="M24 440 Q200 400 376 440 L376 470 Q200 520 24 470 Z" fill="#8DB068"/>
+        <use href="#sunflower" transform="translate(52 430) scale(.85)"/>
+        <use href="#sunflower" transform="translate(348 426) scale(.95)"/>
+        <use href="#sunflower" transform="translate(22 470) scale(.6)"/>
+        <use href="#sunflower" transform="translate(378 470) scale(.65)"/>
+        <ellipse cx="200" cy="500" rx="130" ry="12" fill="#3A2A2A" opacity=".18"/>
+
+        <!-- Howard -->
+        <g>
+          <path d="M208 345 L204 494 L246 494 L254 362 L262 494 L304 494 L300 345 Z" fill="#23232A"/>
+          <line x1="254" y1="366" x2="254" y2="490" stroke="#15151A" stroke-width="2"/>
+          <ellipse cx="225" cy="497" rx="25" ry="8" fill="#141418"/>
+          <ellipse cx="283" cy="497" rx="25" ry="8" fill="#141418"/>
+          <path d="M324 252 Q342 300 328 340" stroke="#C4906B" stroke-width="24" stroke-linecap="round" fill="none"/>
+          <rect x="240" y="150" width="30" height="50" rx="9" fill="#B9845F"/>
+          <path d="M203 196 Q255 184 307 196 L342 250 L318 268 L312 352 L198 352 L194 268 L170 252 Z" fill="#2B2B33"/>
+          <path d="M318 268 L342 250" stroke="#1C1C22" stroke-width="3"/>
+          <path d="M236 192 Q255 213 274 192" fill="#B9845F" stroke="#3A3A44" stroke-width="3"/>
+          <path d="M270 232 c0 -5 7 -5 7 0 c0 -5 7 -5 7 0 c0 5 -7 9 -7 11 c0 -2 -7 -6 -7 -11z" fill="#F7CAD4"/>
+          <ellipse cx="213" cy="124" rx="8" ry="12" fill="#BF8A64"/>
+          <ellipse cx="297" cy="124" rx="8" ry="12" fill="#BF8A64"/>
+          <path d="M213 110 Q213 70 255 68 Q297 70 297 110 L295 138 Q290 170 255 174 Q220 170 215 138 Z" fill="#C99673"/>
+          <path d="M210 118 Q204 76 230 62 Q238 50 252 54 Q260 44 270 52 Q298 58 301 96 L300 118 Q295 94 283 88 Q262 80 240 84 Q222 88 216 104 Z" fill="#1A1614"/>
+          <path d="M226 102 Q237 96 248 101 M262 101 Q273 96 284 102" stroke="#1A1614" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <circle cx="237" cy="118" r="3.4" fill="#1A1614"/><circle cx="273" cy="118" r="3.4" fill="#1A1614"/>
+          <g fill="rgba(255,255,255,.2)" stroke="#2A2A2A" stroke-width="2.6">
+            <rect x="221" y="107" width="31" height="22" rx="9"/><rect x="258" y="107" width="31" height="22" rx="9"/>
+          </g>
+          <path d="M252 115 Q255 111 258 115 M221 113 L208 116 M289 113 L302 116" stroke="#2A2A2A" stroke-width="2.4" fill="none"/>
+          <path d="M255 124 Q250 137 257 139" stroke="#9E6E4E" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M244 147 Q255 143 266 147" stroke="#3A2A22" stroke-width="2.5" opacity=".4" fill="none" stroke-linecap="round"/>
+          <path d="M243 153 Q256 161 268 151" stroke="#7A3F33" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- Sara -->
+        <g>
+          <path d="M106 150 Q100 96 148 92 Q198 96 192 150 Q196 240 204 318 Q190 334 176 318 L122 318 Q106 334 94 318 Q100 240 106 150 Z" fill="#6E4630"/>
+          <rect x="126" y="460" width="13" height="32" fill="#F1CDB8"/><rect x="157" y="460" width="13" height="32" fill="#F1CDB8"/>
+          <ellipse cx="132" cy="495" rx="13" ry="5.5" fill="#B98A64"/><ellipse cx="164" cy="495" rx="13" ry="5.5" fill="#B98A64"/>
+          <path d="M116 288 L182 288 Q200 380 212 468 Q150 482 86 468 Q98 380 116 288 Z" fill="url(#skirtPrint)" stroke="#9DBBD3" stroke-width="1.5"/>
+          <path d="M130 300 Q124 390 116 470 M166 300 Q174 390 184 472" stroke="#9DBBD3" stroke-width="1.5" fill="none" opacity=".8"/>
+          <path d="M110 238 Q97 290 103 330" stroke="#F1CDB8" stroke-width="17" stroke-linecap="round" fill="none"/>
+          <path d="M190 238 Q202 284 196 318" stroke="#F1CDB8" stroke-width="17" stroke-linecap="round" fill="none"/>
+          <ellipse cx="196" cy="310" rx="9" ry="3" fill="#D8B45A"/>
+          <rect x="80" y="326" width="26" height="36" rx="4" fill="#1F1F24" transform="rotate(-12 93 344)"/>
+          <circle cx="103" cy="334" r="8" fill="#F1CDB8"/>
+          <rect x="139" y="176" width="18" height="28" rx="6" fill="#EDC2AA"/>
+          <path d="M120 200 Q148 192 176 200 L200 238 L186 250 L184 294 L114 294 L112 250 L96 238 Z" fill="#FBFAF7" stroke="#E4DDD6" stroke-width="1.5"/>
+          <path d="M136 198 Q148 211 160 198" fill="#EDC2AA"/>
+          <path d="M134 200 Q148 222 162 200" stroke="#D8B45A" stroke-width="1.3" fill="none"/>
+          <circle cx="148" cy="212" r="2.6" fill="#D8B45A"/>
+          <path d="M112 150 Q103 222 110 300 Q116 320 127 306 Q120 250 124 196 Q124 170 121 152 Z" fill="#8B5A3A"/>
+          <path d="M184 150 Q193 222 186 300 Q180 320 169 306 Q176 250 172 196 Q172 170 175 152 Z" fill="#8B5A3A"/>
+          <path d="M113 170 Q108 230 114 292 M183 170 Q188 230 182 292" stroke="#B78356" stroke-width="2" fill="none" opacity=".7"/>
+          <ellipse cx="148" cy="150" rx="34" ry="41" fill="#F5D6C3"/>
+          <path d="M110 158 Q103 100 148 96 Q193 100 186 158 Q181 124 166 114 Q156 108 148 113 Q140 108 130 114 Q115 124 110 158 Z" fill="#8B5A3A"/>
+          <path d="M148 100 Q146 106 148 113" stroke="#6E4630" stroke-width="1.5" fill="none"/>
+          <path d="M127 136 Q134 131 142 134 M154 134 Q162 131 169 136" stroke="#7A4E32" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M129 149 Q135 143 141 149 M155 149 Q161 143 167 149" stroke="#3A2418" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+          <circle cx="128" cy="162" r="7" fill="#F29AAE" opacity=".45"/><circle cx="168" cy="162" r="7" fill="#F29AAE" opacity=".45"/>
+          <path d="M148 152 Q145 160 150 161" stroke="#D9A58B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M139 169 Q148 180 158 169 Q148 173 139 169 Z" fill="#C4606C" stroke="#B5525E" stroke-width="1.5" stroke-linejoin="round"/>
+        </g>
+
+        <path class="float-heart" d="M200 66 c-14 -12 -30 -22 -30 -36 c0 -10 8 -16 16 -16 c6 0 11 4 14 9 c3 -5 8 -9 14 -9 c8 0 16 6 16 16 c0 14 -16 24 -30 36z" fill="#E36F8C"/>
+      </svg>
+      <h2 class="script names">Sara &amp; Howard</h2>
+      <p class="sign">Thinking of you always, Howard</p>
+    </div>
+  </section>
+</main>
+
+<nav aria-label="Card navigation">
+  <button id="back" type="button" hidden>Back</button>
+  <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+  <button id="next" type="button">Next</button>
+</nav>
+
+<script>
+(() => {
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs = {}) => {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  };
+
+  // Seeded random so the field looks the same every visit
+  let seed = 7;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+  // Sunflower petals
+  const ring = document.getElementById("petalRingA");
+  for (let i = 0; i < 16; i++) {
+    ring.appendChild(el("ellipse", { cx: 0, cy: -27, rx: 7, ry: 15, fill: "#E8961C", transform: `rotate(${i * 22.5 + 11.25})` }));
+  }
+  for (let i = 0; i < 16; i++) {
+    ring.appendChild(el("ellipse", { cx: 0, cy: -26, rx: 7, ry: 16, fill: "#F7BE35", transform: `rotate(${i * 22.5})` }));
+  }
+
+  // Field of sunflowers, far rows first
+  const field = document.getElementById("field");
+  const ROWS = 15;
+  for (let r = 0; r < ROWS; r++) {
+    const t = r / (ROWS - 1);
+    const y = 522 + Math.pow(t, 1.7) * 300;
+    const s = 0.14 + Math.pow(t, 1.9) * 1.35;
+    const count = Math.round(46 - t * 34);
+    const row = el("g", { opacity: (0.55 + t * 0.45).toFixed(2) });
+    for (let i = 0; i < count; i++) {
+      const x = ((i + rand() * 0.8) / count) * 1300 - 50;
+      const yy = y + (rand() - 0.5) * 14 * s;
+      row.appendChild(el("line", { x1: x, y1: yy, x2: x + (rand() - 0.5) * 10 * s, y2: yy + 120 * s + 40, stroke: "#3E5A26", "stroke-width": Math.max(1, 5 * s) }));
+      if (s > 0.6) {
+        row.appendChild(el("ellipse", { cx: x + 16 * s, cy: yy + 55 * s, rx: 18 * s, ry: 7 * s, fill: "#4F6E2E", transform: `rotate(-25 ${x + 16 * s} ${yy + 55 * s})` }));
+      }
+      row.appendChild(el("use", { href: "#sunflower", transform: `translate(${x.toFixed(1)} ${yy.toFixed(1)}) rotate(${((rand() - 0.5) * 30).toFixed(1)}) scale(${s.toFixed(3)})` }));
+    }
+    field.appendChild(row);
+  }
+
+  // Bouquet: leaves, baby's breath, roses
+  const cx = 300, cy = 290;
+  const leaves = document.getElementById("leaves");
+  for (let a = 175; a <= 365; a += 11) {
+    const rad = (a * Math.PI) / 180;
+    const lx = cx + Math.cos(rad) * 250, ly = cy + Math.sin(rad) * 185;
+    leaves.appendChild(el("ellipse", { cx: lx, cy: ly, rx: 15, ry: 40, fill: a % 2 ? "#5B8A42" : "#4A7536", transform: `rotate(${a + 90} ${lx} ${ly})` }));
+  }
+  const bb = document.getElementById("babysBreath");
+  for (let a = 180; a <= 360; a += 9) {
+    const rad = (a * Math.PI) / 180;
+    const bx = cx + Math.cos(rad) * 222, by = cy + Math.sin(rad) * 162;
+    for (let k = 0; k < 5; k++) {
+      bb.appendChild(el("circle", { cx: bx + (rand() - 0.5) * 26, cy: by + (rand() - 0.5) * 22, r: 3 + rand() * 2.5, fill: "#FFFDFB", stroke: "#EFE3DC", "stroke-width": 0.8 }));
+    }
+  }
+  const roseSpots = [
+    [240,148,.9],[360,148,.9],
+    [170,208,.95],[300,192,1.05],[430,208,.95],
+    [106,278,.9],[230,262,1],[370,262,1],[494,278,.9],
+    [160,338,.95],[300,322,1.05],[440,338,.95],
+    [96,368,.85],[504,368,.85],[230,388,.95],[370,388,.95],[300,398,.9]
+  ];
+  const roses = document.getElementById("roses");
+  roseSpots.forEach(([x, y, s], i) => {
+    const g = el("g", { transform: `translate(${x} ${y}) scale(${s})` });
+    const b = el("g", { class: "bloom" });
+    b.style.animationDelay = (0.6 + i * 0.08).toFixed(2) + "s";
+    b.appendChild(el("use", { href: "#rose", transform: `rotate(${Math.round(rand() * 72)})` }));
+    g.appendChild(b);
+    roses.appendChild(g);
+  });
+
+  // Petals
+  const petals = document.getElementById("petals");
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement("div");
+    p.className = "petal";
+    p.style.left = (rand() * 100) + "vw";
+    p.style.animationDuration = (9 + rand() * 9) + "s";
+    p.style.animationDelay = (-rand() * 18) + "s";
+    p.style.setProperty("--sway", ((rand() - 0.5) * 160) + "px");
+    const sc = 0.6 + rand() * 0.8;
+    p.style.width = 14 * sc + "px";
+    p.style.height = 18 * sc + "px";
+    petals.appendChild(p);
+  }
+
+  // Navigation
+  const screens = [...document.querySelectorAll(".screen")];
+  const dots = [...document.querySelectorAll(".dots span")];
+  const back = document.getElementById("back");
+  const next = document.getElementById("next");
+  let step = 0;
+
+  function show(n) {
+    step = Math.max(0, Math.min(screens.length - 1, n));
+    screens.forEach((s, i) => {
+      s.classList.toggle("active", i === step);
+      s.setAttribute("aria-hidden", i !== step);
+    });
+    dots.forEach((d, i) => d.classList.toggle("on", i === step));
+    document.body.dataset.step = step;
+    back.hidden = step === 0;
+    next.textContent = step === screens.length - 1 ? "Start over" : "Next";
+  }
+
+  next.addEventListener("click", () => show(step === screens.length - 1 ? 0 : step + 1));
+  back.addEventListener("click", () => show(step - 1));
+  document.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") next.click();
+    if (e.key === "ArrowLeft" && step > 0) back.click();
+  });
+  let x0 = null;
+  document.addEventListener("touchstart", e => (x0 = e.touches[0].clientX), { passive: true });
+  document.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (dx < -50) next.click();
+    if (dx > 50 && step > 0) back.click();
+    x0 = null;
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
