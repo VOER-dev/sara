@@ -116,10 +116,46 @@
   .beg{font-size:clamp(1.9rem,6.5vw,2.4rem);text-align:center;margin-top:12px}
   .qmark{opacity:0}
   #s5.active .qmark{animation:qfade 3.6s ease-in-out 1.6s infinite}
+  .shot.active .qmark{animation:seqin 1s ease .8s forwards}
   @keyframes qfade{0%{opacity:0;transform:translateY(6px)}30%{opacity:.9;transform:translateY(0)}70%{opacity:.9}100%{opacity:0;transform:translateY(-8px)}}
   .spot{opacity:0}
   #s5.active .spot{animation:spotin 2.2s ease forwards .7s}
   @keyframes spotin{to{opacity:1}}
+
+  /* Scene 2 — shot screens */
+  .shot .note{padding:18px 20px 24px;width:min(94vw,620px);max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .shotpic{width:100%;max-width:460px;height:auto;display:block;margin:0 auto;border-radius:14px}
+  .shotlabel{font-family:var(--serif);font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:.66rem;color:var(--dusk);text-align:center;margin:14px 0 6px}
+  .line{font-size:clamp(1rem,3.4vw,1.1rem);font-weight:300;line-height:1.7;max-width:46ch;margin:0 auto}
+  .line em{font-style:italic;color:var(--dusk)}
+  .fade-seq{opacity:0}
+  .shot.active .fade-seq{animation:seqin .9s ease forwards}
+  @keyframes seqin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .push{transform:scale(1)}
+  .shot.active .push{animation:push 6s ease-out forwards}
+  @keyframes push{from{transform:scale(1)}to{transform:scale(1.14)}}
+  .scrollpost{opacity:0}
+  #s9.active .scrollpost{animation:seqin .5s ease forwards}
+  .titlecard{text-align:center}
+  .titlecard .kicker{font-family:var(--serif);letter-spacing:.3em;text-transform:uppercase;font-size:.72rem;color:var(--dusk)}
+  .titlecard .big{font-size:clamp(2.4rem,8vw,3.2rem);margin:.15em 0}
+  .titlecard .sub{font-family:var(--serif);letter-spacing:.14em;text-transform:uppercase;font-size:.76rem;color:var(--dusk);font-weight:500}
+
+  /* Scene 2 backdrops */
+  #warmroom,#darkroom{position:fixed;inset:0;pointer-events:none;opacity:0;transition:opacity 1.8s ease}
+  #warmroom{background:linear-gradient(#C8A97E 0%,#E0C7A2 50%,#EFDCBE 100%)}
+  #darkroom{background:linear-gradient(#141420 0%,#22203A 60%,#2E2A44 100%)}
+  body[data-step="6"] #warmroom,body[data-step="7"] #warmroom,body[data-step="8"] #warmroom{opacity:.95}
+  body[data-step="9"] #darkroom,body[data-step="10"] #darkroom{opacity:.97}
+  html body[data-step="6"] #petals,html body[data-step="7"] #petals,
+  html body[data-step="8"] #petals,html body[data-step="9"] #petals,
+  html body[data-step="10"] #petals{opacity:0}
+  body[data-step="9"] .note,body[data-step="10"] .note{background:rgba(28,26,44,.82);color:#F3EAF0}
+  body[data-step="9"] .script,body[data-step="10"] .script,
+  body[data-step="9"] .line,body[data-step="10"] .line{color:#F7EFF3}
+  body[data-step="9"] .shotlabel,body[data-step="10"] .shotlabel,
+  body[data-step="9"] .line em,body[data-step="10"] .kicker,body[data-step="10"] .sub{color:#D7AFC4}
+  .dots{flex-wrap:wrap;max-width:150px;justify-content:center}
 
   /* Get-well screen */
   #s4 .note{padding:22px 22px 30px}
@@ -215,6 +251,29 @@
       <ellipse cx="18" cy="27" rx="3.5" ry="1.8" fill="#7FA66E" transform="rotate(25 18 27)"/>
       <circle cx="23" cy="22" r="4" fill="#F7B8C6"/><circle cx="23" cy="22" r="1.6" fill="#DB6A86"/>
     </pattern>
+
+    <g id="hHead"><g transform="translate(-255 -120)">
+      <ellipse cx="213" cy="124" rx="8" ry="12" fill="#BF8A64"/>
+      <ellipse cx="297" cy="124" rx="8" ry="12" fill="#BF8A64"/>
+      <path d="M213 110 Q213 70 255 68 Q297 70 297 110 L295 138 Q290 170 255 174 Q220 170 215 138 Z" fill="#C99673"/>
+      <path d="M210 118 Q204 76 230 62 Q238 50 252 54 Q260 44 270 52 Q298 58 301 96 L300 118 Q295 94 283 88 Q262 80 240 84 Q222 88 216 104 Z" fill="#1A1614"/>
+      <path d="M226 102 Q237 97 248 102 M262 102 Q273 97 284 102" stroke="#1A1614" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <circle cx="236" cy="118" r="3.5" fill="#1A1614"/><circle cx="272" cy="118" r="3.5" fill="#1A1614"/>
+      <g fill="rgba(255,255,255,.2)" stroke="#2A2A2A" stroke-width="2.6">
+        <rect x="221" y="107" width="31" height="22" rx="9"/><rect x="258" y="107" width="31" height="22" rx="9"/>
+      </g>
+      <path d="M252 115 Q255 111 258 115 M221 113 L208 116 M289 113 L302 116" stroke="#2A2A2A" stroke-width="2.4" fill="none"/>
+      <path d="M255 124 Q250 137 257 139" stroke="#9E6E4E" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M244 147 Q255 143 266 147" stroke="#3A2A22" stroke-width="2.5" opacity=".4" fill="none" stroke-linecap="round"/>
+    </g></g>
+    <g id="sHead">
+      <path d="M-24 -8 Q-28 -46 -2 -49 Q24 -46 20 -8 L22 22 Q10 34 -2 34 Q-14 34 -22 22 Z" fill="#8B5A3A"/>
+      <ellipse cx="-2" cy="-14" rx="21" ry="25" fill="#F5D6C3"/>
+      <path d="M-24 -8 Q-28 -46 -2 -49 Q24 -46 20 -8 Q17 -28 7 -34 Q-2 -38 -11 -34 Q-21 -28 -24 -8 Z" fill="#8B5A3A"/>
+      <path d="M-14 -25 Q-9 -28 -4 -25 M0 -25 Q5 -28 10 -25" stroke="#7A4E32" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      <path d="M-13 -18 Q-9 -22 -5 -18 M1 -18 Q5 -22 9 -18" stroke="#3A2418" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <circle cx="-16" cy="-9" r="5" fill="#F29AAE" opacity=".4"/><circle cx="12" cy="-9" r="5" fill="#F29AAE" opacity=".4"/>
+    </g>
   </defs>
 </svg>
 
@@ -264,6 +323,8 @@
 <div id="veil"></div>
 <div id="night" aria-hidden="true"></div>
 <div id="chapel" aria-hidden="true"></div>
+<div id="warmroom" aria-hidden="true"></div>
+<div id="darkroom" aria-hidden="true"></div>
 <div id="petals" aria-hidden="true"></div>
 
 <main>
@@ -623,13 +684,240 @@
         <p>At the time, I had no idea that the stranger who caught my attention that day was Sara &mdash; or that this simple moment of curiosity would become the beginning of our journey.</p>
       </div>
       <h2 class="script beg">Where it all began</h2>
+      <p class="hint">Click next &mdash; Scene 2.</p>
+    </div>
+  </section>
+
+  <!-- Scene 2, Shot 1 -->
+  <section class="screen shot" id="s6" aria-label="Shot one: Sara hesitates before asking the guest speaker for an interview, and Howard walks over">
+    <div class="note">
+      <svg class="shotpic" viewBox="0 0 440 290" role="img" aria-label="Busy church hall after the event. Sara hangs back near the guest speaker, hesitating, while Howard starts to walk over.">
+        <defs>
+          <linearGradient id="warmWall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFE3CC"/><stop offset="1" stop-color="#D6C3A3"/></linearGradient>
+          <radialGradient id="warmLamp"><stop offset="0" stop-color="#FFE6AE" stop-opacity=".8"/><stop offset="1" stop-color="#FFE6AE" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="440" height="290" fill="url(#warmWall)"/>
+        <path d="M0 0 H440 V22 Q220 -6 0 22 Z" fill="#C9B291"/>
+        <g id="s6Windows"></g>
+        <path d="M0 52 Q220 88 440 52 V72 Q220 108 0 72 Z" fill="#E4D5B8" stroke="#C0AC8B" stroke-width="2"/>
+        <rect y="214" width="440" height="76" fill="#B99B74"/>
+        <ellipse cx="90" cy="60" rx="90" ry="50" fill="url(#warmLamp)"/>
+        <ellipse cx="350" cy="60" rx="90" ry="50" fill="url(#warmLamp)"/>
+        <g id="s6Crowd"></g>
+
+        <!-- Sara + the speaker, mid-left -->
+        <g transform="translate(126 150) scale(.9)">
+          <g transform="translate(74 4)">
+            <path d="M-20 62 Q-22 16 0 8 Q22 16 20 62 Z" fill="#3A404C"/>
+            <path d="M18 20 q14 10 12 26" stroke="#3A404C" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <circle cx="2" cy="-8" r="15" fill="#E0B48C"/>
+            <path d="M-13 -12 q4 -18 15 -18 q12 0 15 18 q-6 -8 -15 -8 q-9 0 -15 8 Z" fill="#3B2E23"/>
+            <circle cx="10" cy="-6" r="2.2" fill="#2A211A"/>
+            <path d="M6 2 q6 4 12 0" stroke="#8A5A46" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(112 18) scale(.78)" opacity=".85">
+            <path d="M-16 44 Q-16 8 0 2 Q16 8 16 44 Z" fill="#5E5347"/>
+            <circle cx="0" cy="-10" r="10" fill="#4A3B2E"/>
+          </g>
+          <path d="M-22 66 Q-24 16 0 8 Q24 16 22 66 Z" fill="#FBFAF7"/>
+          <path d="M-17 20 q-9 14 -2 24" stroke="#F5D6C3" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <path d="M17 20 q9 14 2 24" stroke="#F5D6C3" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="0" cy="46" rx="9" ry="6.5" fill="#F5D6C3"/>
+          <rect x="-7" y="38" width="9" height="14" rx="4" fill="#4A4A55" transform="rotate(-14 -3 45)"/>
+          <use href="#sHead" transform="translate(0 -12) scale(.9)"/>
+          <path d="M-4 -12 q4 2 8 -1" stroke="#B5525E" stroke-width="2" fill="none" stroke-linecap="round" transform="translate(0 -12) scale(.9)"/>
+        </g>
+
+        <!-- Howard watching from several feet away -->
+        <g>
+          <g transform="translate(346 168) scale(1.04)">
+            <path d="M-34 84 Q-38 26 -2 16 Q34 26 30 84 Z" fill="#2B2B33"/>
+            <path d="M-30 34 q-18 12 -20 30" stroke="#2B2B33" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <circle cx="-50" cy="66" r="6" fill="#C4906B"/>
+            <path d="M-12 16 Q-2 26 10 16" fill="#B9845F" stroke="#3A3A44" stroke-width="2"/>
+            <use href="#hHead" transform="translate(0 -22) rotate(-8) scale(.46)"/>
+            <path d="M-6 -12 q6 3 13 -1" stroke="#7A3F33" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(330 86)"><g class="qmark">
+            <rect x="-62" y="-26" width="124" height="34" rx="16" fill="#FFF8EE" opacity=".95"/>
+            <circle cx="-28" cy="18" r="5" fill="#FFF8EE" opacity=".9"/><circle cx="-16" cy="28" r="3" fill="#FFF8EE" opacity=".8"/>
+            <text x="0" y="-3" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="13" font-style="italic" fill="#5B3B52">There she is again...</text>
+          </g></g>
+        </g>
+      </svg>
+      <p class="shotlabel">After the event</p>
+      <p class="line">The hall was still full &mdash; people talking, taking photos, meeting each other. She had a certain boldness about her, but she was shy to ask the guest speaker for an interview. So I walked over to ask who she was and why she was there.</p>
+      <p class="line fade-seq" style="animation-delay:1.2s"><em>&ldquo;There she is again...&rdquo;</em></p>
+    </div>
+  </section>
+
+  <!-- Scene 2, Shot 2 -->
+  <section class="screen shot" id="s7" aria-label="Shot two: Howard and Sara introduce themselves">
+    <div class="note">
+      <svg class="shotpic" viewBox="0 0 440 290" role="img" aria-label="Howard and Sara standing near each other in the church, introducing themselves in a friendly way.">
+        <rect width="440" height="290" fill="url(#warmWall)"/>
+        <path d="M0 0 H440 V20 Q220 -6 0 20 Z" fill="#C9B291"/>
+        <g id="s7Windows"></g>
+        <rect y="222" width="440" height="68" fill="#B99B74"/>
+        <ellipse cx="220" cy="70" rx="180" ry="62" fill="url(#warmLamp)"/>
+        <g id="s7Crowd"></g>
+        <ellipse cx="220" cy="248" rx="120" ry="14" fill="#8E7250" opacity=".35"/>
+
+        <!-- Sara -->
+        <g transform="translate(160 168) scale(1.08)">
+          <path d="M-24 76 Q-26 14 0 4 Q26 14 24 76 Z" fill="#FBFAF7"/>
+          <path d="M-20 22 q-12 14 -10 30" stroke="#F5D6C3" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <path d="M20 22 q12 14 10 30" stroke="#F5D6C3" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <use href="#sHead" transform="translate(0 -16)"/>
+          <path d="M-9 -18 q7 8 15 0 q-8 4 -15 0 Z" fill="#C4606C" stroke="#B5525E" stroke-width="1.2" stroke-linejoin="round" transform="translate(0 -16)"/>
+        </g>
+        <!-- Howard -->
+        <g transform="translate(288 160) scale(1.08)">
+          <path d="M-30 84 Q-34 18 0 6 Q34 18 30 84 Z" fill="#2B2B33"/>
+          <path d="M-11 6 Q0 17 11 6" fill="#B9845F" stroke="#3A3A44" stroke-width="2"/>
+          <path d="M-26 26 q-14 16 -10 34" stroke="#2B2B33" stroke-width="12" fill="none" stroke-linecap="round"/>
+          <use href="#hHead" transform="translate(-2 -30) rotate(6) scale(.52)"/>
+          <path d="M-9 -22 q9 5 18 -1" stroke="#7A3F33" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <g font-family="Fraunces, Georgia, serif" font-size="12.5" fill="#4A2545">
+          <g class="fade-seq" style="animation-delay:.5s">
+            <rect x="248" y="34" width="180" height="46" rx="16" fill="#FFF8EE"/>
+            <path d="M286 80 l-6 12 l16 -12 Z" fill="#FFF8EE"/>
+            <text x="338" y="53" text-anchor="middle">I&rsquo;m Howard. I&rsquo;m here</text>
+            <text x="338" y="70" text-anchor="middle">with Victory Outreach.</text>
+          </g>
+          <g class="fade-seq" style="animation-delay:1.6s">
+            <rect x="34" y="58" width="104" height="32" rx="15" fill="#FFF8EE"/>
+            <path d="M118 90 l10 12 l-22 -12 Z" fill="#FFF8EE"/>
+            <text x="86" y="79" text-anchor="middle">I&rsquo;m Sara.</text>
+          </g>
+        </g>
+      </svg>
+      <p class="shotlabel">Their paths cross</p>
+      <p class="line">So I walked over and asked. It turned into an ordinary conversation &mdash; nothing dramatic, just two people introducing themselves.</p>
+    </div>
+  </section>
+
+  <!-- Scene 2, Shot 3 -->
+  <section class="screen shot" id="s8" aria-label="Shot three: Howard and Sara exchange Instagram handles">
+    <div class="note">
+      <svg class="shotpic" viewBox="0 0 440 290" role="img" aria-label="Close-up of two phones held side by side as Howard and Sara follow each other.">
+        <rect width="440" height="290" fill="url(#warmWall)"/>
+        <ellipse cx="220" cy="150" rx="200" ry="120" fill="url(#warmLamp)"/>
+        <g id="s8Crowd"></g>
+
+        <!-- hands + phones -->
+        <g transform="translate(120 150) rotate(-7)">
+          <rect x="-46" y="-78" width="92" height="160" rx="14" fill="#2A2A33"/>
+          <rect x="-40" y="-72" width="80" height="148" rx="10" fill="#FBF6F0"/>
+          <circle cx="-18" cy="-44" r="18" fill="#F2E3D6"/>
+          <g clip-path="none"><use href="#sHead" transform="translate(-18 -40) scale(.56)"/></g>
+          <path d="M-24 -44 q6 5 12 0 q-6 3 -12 0 Z" fill="#C4606C"/>
+          <text x="10" y="-48" font-family="Fraunces, Georgia, serif" font-size="11" fill="#4A2545">Sara</text>
+          <rect x="6" y="-40" width="30" height="12" rx="6" fill="#D17A8F"/>
+          <text x="21" y="-31" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="7.5" fill="#fff">Follow</text>
+          <g id="grid1"></g>
+          <path d="M-52 60 q-16 12 -8 26 l70 0 q10 -14 -4 -24 Z" fill="#C99673"/>
+        </g>
+        <g transform="translate(316 150) rotate(7)">
+          <rect x="-46" y="-78" width="92" height="160" rx="14" fill="#2A2A33"/>
+          <rect x="-40" y="-72" width="80" height="148" rx="10" fill="#FBF6F0"/>
+          <circle cx="-18" cy="-44" r="18" fill="#F2E3D6"/>
+          <use href="#hHead" transform="translate(-18 -42) scale(.30)"/>
+          <text x="8" y="-50" font-family="Fraunces, Georgia, serif" font-size="9" fill="#4A2545">@howardsuh213</text>
+          <rect x="6" y="-42" width="30" height="12" rx="6" fill="#7A3B63"/>
+          <text x="21" y="-33" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="7.5" fill="#fff">Follow</text>
+          <g id="grid2"></g>
+          <path d="M52 60 q16 12 8 26 l-70 0 q-10 -14 4 -24 Z" fill="#C99673"/>
+        </g>
+        <g class="fade-seq" style="animation-delay:1s">
+          <path d="M176 116 q44 -26 88 0" stroke="#D17A8F" stroke-width="3" fill="none" stroke-dasharray="6 6"/>
+          <circle cx="220" cy="103" r="12" fill="#FFF8EE"/>
+          <path d="M214 103 h12 M220 97 v12" stroke="#D17A8F" stroke-width="2.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <p class="shotlabel">The Instagram exchange</p>
+      <p class="line">Somewhere in the middle of that conversation, we ended up trading Instagram handles. A small, ordinary thing. Neither of us thought much of it.</p>
+    </div>
+  </section>
+
+  <!-- Scene 2, Shot 4 -->
+  <section class="screen shot" id="s9" aria-label="Shot four: Howard alone, scrolling Sara's profile">
+    <div class="note">
+      <svg class="shotpic" viewBox="0 0 440 300" role="img" aria-label="Howard alone in a dim room, scrolling through Sara's profile with a curious expression.">
+        <defs>
+          <linearGradient id="dimRoom" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A1830"/><stop offset="1" stop-color="#2E2A44"/></linearGradient>
+          <radialGradient id="screenGlow"><stop offset="0" stop-color="#BFD8F2" stop-opacity=".55"/><stop offset="1" stop-color="#BFD8F2" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="440" height="300" fill="url(#dimRoom)"/>
+        <ellipse cx="128" cy="180" rx="120" ry="110" fill="url(#screenGlow)"/>
+        <g transform="translate(120 172)">
+          <path d="M-34 108 Q-38 34 -2 22 Q34 34 30 108 Z" fill="#23232A"/>
+          <path d="M-10 22 Q-2 32 8 22" fill="#A9784F" stroke="#31313C" stroke-width="2"/>
+          <use href="#hHead" transform="translate(0 -22) rotate(10) scale(.56)"/>
+          <path d="M-8 -10 q8 4 16 -1" stroke="#7A3F33" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <path d="M24 52 q22 -6 30 -22" stroke="#23232A" stroke-width="14" fill="none" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(212 138) rotate(9)">
+          <rect x="-42" y="-72" width="84" height="150" rx="13" fill="#0F0F16"/>
+          <rect x="-37" y="-66" width="74" height="138" rx="9" fill="#F7F3EE"/>
+          <circle cx="-18" cy="-42" r="15" fill="#F2E3D6"/>
+          <use href="#sHead" transform="translate(-18 -39) scale(.48)"/>
+          <text x="6" y="-46" font-family="Fraunces, Georgia, serif" font-size="9" fill="#4A2545">Sara</text>
+          <rect x="4" y="-39" width="28" height="11" rx="5.5" fill="#D17A8F"/>
+          <text x="18" y="-31" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="7" fill="#fff">Following</text>
+          <g id="grid3"></g>
+          <path d="M34 34 q-14 10 -26 8" stroke="#C99673" stroke-width="11" fill="none" stroke-linecap="round"/>
+        </g>
+        <g font-family="Fraunces, Georgia, serif" font-size="14" font-style="italic" fill="#E7CDDC">
+          <text class="scrollpost" style="animation-delay:.6s" x="300" y="80">&ldquo;Who is Sara?&rdquo;</text>
+          <text class="scrollpost" style="animation-delay:1.8s" x="286" y="124">&ldquo;Why did she come</text>
+          <text class="scrollpost" style="animation-delay:1.8s" x="286" y="142">here by herself?&rdquo;</text>
+          <text class="scrollpost" style="animation-delay:3s" x="294" y="186">&ldquo;Was she a journalist?&rdquo;</text>
+          <text class="scrollpost" style="animation-delay:4.2s" x="298" y="230">&ldquo;What&rsquo;s her story?&rdquo;</text>
+        </g>
+      </svg>
+      <p class="shotlabel">Later that night</p>
+      <p class="line">I kept scrolling. Post after post, trying to work out who this person actually was.</p>
+    </div>
+  </section>
+
+  <!-- Scene 2, closing title -->
+  <section class="screen shot" id="s10" aria-label="Closing title: Howard and Sara, Our Journey, Scene Two">
+    <div class="note titlecard">
+      <svg class="shotpic" viewBox="0 0 440 190" role="img" aria-label="Close-up of Howard pausing on Sara's profile before the screen fades to black.">
+        <defs>
+          <linearGradient id="fadeOut" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B0B12" stop-opacity="0"/><stop offset="1" stop-color="#0B0B12"/></linearGradient>
+        </defs>
+        <rect width="440" height="190" fill="#16142A"/>
+        <ellipse cx="220" cy="80" rx="150" ry="90" fill="url(#screenGlow)"/>
+        <g transform="translate(220 88)">
+          <rect x="-60" y="-84" width="120" height="196" rx="18" fill="#0F0F16"/>
+          <rect x="-53" y="-76" width="106" height="182" rx="12" fill="#F7F3EE"/>
+          <circle cx="-24" cy="-46" r="21" fill="#F2E3D6"/>
+          <use href="#sHead" transform="translate(-24 -42) scale(.68)"/>
+          <path d="M-31 -46 q7 6 14 0 q-7 3 -14 0 Z" fill="#C4606C"/>
+          <text x="6" y="-52" font-family="Fraunces, Georgia, serif" font-size="12" fill="#4A2545">Sara</text>
+          <rect x="4" y="-44" width="36" height="14" rx="7" fill="#D17A8F"/>
+          <text x="22" y="-34" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="8.5" fill="#fff">Following</text>
+          <g id="grid4"></g>
+        </g>
+        <rect width="440" height="190" fill="url(#fadeOut)" opacity=".8"/>
+      </svg>
+      <p class="line fade-seq" style="animation-delay:.4s">I was only trying to figure out who she was. I had no idea I was looking at someone who would become such an important part of my story.</p>
+      <div class="fade-seq" style="animation-delay:1.8s">
+        <p class="kicker">Howard &amp; Sara</p>
+        <h2 class="script big">Our Journey</h2>
+        <p class="sub">Scene 2 &mdash; Who is this girl?</p>
+      </div>
     </div>
   </section>
 </main>
 
 <nav aria-label="Card navigation">
   <button id="back" type="button" hidden>Back</button>
-  <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <button id="next" type="button">Next</button>
 </nav>
 
@@ -774,6 +1062,48 @@
       if (y > 192 && y < 218 && x > 108 && x < 196) continue;   // keep Sara clear
       if (y > 222 && x > 276) continue;                          // keep Howard clear
       host.appendChild(person(x, y + (rand() - 0.5) * 3, s * (0.9 + rand() * 0.2), dim));
+    }
+  });
+
+  // Scene 2 rooms: window bands, background crowds, post grids
+  ["s6Windows", "s7Windows"].forEach(id => {
+    const host = document.getElementById(id);
+    for (let x = 10; x < 440; x += 30) {
+      const y = 30 + Math.sin((x / 440) * Math.PI) * 12;
+      host.appendChild(el("rect", { x, y, width: 16, height: 20, rx: 2, fill: "#3C4A5C", stroke: "#C0AC8B", "stroke-width": 2, opacity: .85 }));
+    }
+  });
+  const mingler = (x, y, s, dim) => {
+    const g = el("g", { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${s.toFixed(2)})`, opacity: dim });
+    g.appendChild(el("path", { d: "M-16 34 Q-16 4 0 0 Q16 4 16 34 Z", fill: COAT[Math.floor(rand() * COAT.length)] }));
+    g.appendChild(el("circle", { cx: 0, cy: -11, r: 10, fill: HAIR[Math.floor(rand() * HAIR.length)] }));
+    return g;
+  };
+  [["s6Crowd", [[150, .55, 12, .45], [178, .72, 10, .5], [208, .95, 8, .55]], [[120, 230], [290, 400]]],
+   ["s7Crowd", [[150, .5, 12, .32], [176, .62, 10, .36]], [[120, 340]]],
+   ["s8Crowd", [[120, .6, 9, .22], [170, .8, 7, .2]], [[60, 390]]]
+  ].forEach(([id, rows, gaps]) => {
+    const host = document.getElementById(id);
+    rows.forEach(([y, sc, n, dim]) => {
+      for (let i = 0; i < n; i++) {
+        const x = ((i + .5) / n) * 470 - 15 + (rand() - .5) * 10;
+        if (gaps.some(([a, b]) => x > a && x < b && y > 130)) continue;
+        host.appendChild(mingler(x, y, sc * (.9 + rand() * .2), dim));
+      }
+    });
+  });
+  const POST = ["#E8C9D2", "#CBD9C4", "#EBD9B4", "#C6D3E4", "#E6CBB8", "#D9CDE4", "#F0DCC8", "#C9DCD9", "#E4CED8"];
+  [["grid1", -34, -20, 26, 3, false], ["grid2", -34, -22, 26, 3, false],
+   ["grid3", -31, -20, 23, 3, true], ["grid4", -45, -22, 33, 3, true]].forEach(([id, x0, y0, cell, cols, seq]) => {
+    const host = document.getElementById(id);
+    if (!host) return;
+    for (let i = 0; i < 9; i++) {
+      const r = el("rect", {
+        x: x0 + (i % cols) * cell, y: y0 + Math.floor(i / cols) * cell,
+        width: cell - 3, height: cell - 3, rx: 3, fill: POST[i % POST.length]
+      });
+      if (seq) { r.setAttribute("class", "scrollpost"); r.style.animationDelay = (.3 + i * .18) + "s"; }
+      host.appendChild(r);
     }
   });
 
