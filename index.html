@@ -44,6 +44,14 @@
   @keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
   html body[data-step="4"] #petals{opacity:0}
 
+  /* Scene 6 — Stockholm daylight */
+  #chapel{
+    position:fixed;inset:0;pointer-events:none;opacity:0;transition:opacity 2s ease;
+    background:linear-gradient(#9FB6C9 0%,#C9CFCD 48%,#E4D8C2 100%);
+  }
+  body[data-step="5"] #chapel{opacity:.95}
+  html body[data-step="5"] #petals{opacity:0}
+
   /* ---------- Screens ---------- */
   .screen{
     position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -97,6 +105,21 @@
   .sign{font-weight:300;font-style:italic;margin-top:6px;color:var(--dusk)}
   .float-heart{animation:beat 2.2s ease-in-out infinite;transform-origin:200px 52px}
   @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.08)}}
+
+  /* Story screen */
+  #s5 .note{padding:20px 22px 26px;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;width:min(94vw,620px)}
+  .churchpic{width:100%;max-width:440px;height:auto;display:block;margin:0 auto;border-radius:14px}
+  .where{font-family:var(--serif);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.7rem;color:var(--dusk);margin:14px 0 8px;text-align:center}
+  .story{font-size:clamp(1rem,3.4vw,1.08rem);font-weight:300;line-height:1.75;text-align:left;max-width:54ch;margin:0 auto}
+  .story p{margin-bottom:.8em}
+  .story em{font-style:italic;color:var(--dusk)}
+  .beg{font-size:clamp(1.9rem,6.5vw,2.4rem);text-align:center;margin-top:12px}
+  .qmark{opacity:0}
+  #s5.active .qmark{animation:qfade 3.6s ease-in-out 1.6s infinite}
+  @keyframes qfade{0%{opacity:0;transform:translateY(6px)}30%{opacity:.9;transform:translateY(0)}70%{opacity:.9}100%{opacity:0;transform:translateY(-8px)}}
+  .spot{opacity:0}
+  #s5.active .spot{animation:spotin 2.2s ease forwards .7s}
+  @keyframes spotin{to{opacity:1}}
 
   /* Get-well screen */
   #s4 .note{padding:22px 22px 30px}
@@ -240,6 +263,7 @@
 
 <div id="veil"></div>
 <div id="night" aria-hidden="true"></div>
+<div id="chapel" aria-hidden="true"></div>
 <div id="petals" aria-hidden="true"></div>
 
 <main>
@@ -485,13 +509,127 @@
       </svg>
       <h2 class="script feel">Please feel better</h2>
       <p class="body-copy">Take your medicine, get some rest, and let me take care of you.</p>
+      <p class="hint">Click next for how it all started.</p>
+    </div>
+  </section>
+
+  <!-- 6. Where it began -->
+  <section class="screen" id="s5" aria-label="Where it began — Filadelfia Church, Stockholm">
+    <div class="note">
+      <svg class="churchpic" viewBox="0 0 440 300" role="img" aria-label="Cartoon of Howard inside the Filadelfia Church auditorium in Stockholm, noticing a girl across the crowded room with a curious expression">
+        <defs>
+          <linearGradient id="wallG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F2EADA"/><stop offset="1" stop-color="#DACEB8"/>
+          </linearGradient>
+          <linearGradient id="winLight" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E7F1FA"/><stop offset="1" stop-color="#BCD4E8"/>
+          </linearGradient>
+          <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFF6DE" stop-opacity=".8"/>
+            <stop offset="1" stop-color="#FFF6DE" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="stageG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#B98A55"/><stop offset="1" stop-color="#8E6435"/>
+          </linearGradient>
+          <radialGradient id="saraGlow"><stop offset="0" stop-color="#FFF6DF" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6DF" stop-opacity="0"/></radialGradient>
+          <radialGradient id="stageGlow"><stop offset="0" stop-color="#FFEFC6" stop-opacity=".75"/><stop offset="1" stop-color="#FFEFC6" stop-opacity="0"/></radialGradient>
+        </defs>
+
+        <rect width="440" height="300" fill="url(#wallG)"/>
+
+        <!-- Curved ceiling, echoing the building's rounded facade -->
+        <path d="M0 0 H440 V26 Q220 -8 0 26 Z" fill="#CFC3AB"/>
+        <path d="M0 26 Q220 -8 440 26 V34 Q220 2 0 34 Z" fill="#BFB199" opacity=".7"/>
+
+        <!-- High band of small rectangular windows (as on the facade) -->
+        <g id="highWindows"></g>
+
+        <!-- Sweeping balcony -->
+        <path d="M0 62 Q220 104 440 62 V86 Q220 128 0 86 Z" fill="#E6DAC3" stroke="#C3B49A" stroke-width="2"/>
+        <g id="balconyRail"></g>
+
+        <!-- Stage: wood platform, podium, distant speaker, screens -->
+        <ellipse cx="220" cy="150" rx="150" ry="60" fill="url(#stageGlow)"/>
+        <rect x="128" y="96" width="60" height="42" rx="3" fill="#2E3A46" stroke="#C3B49A" stroke-width="2"/>
+        <rect x="252" y="96" width="60" height="42" rx="3" fill="#2E3A46" stroke="#C3B49A" stroke-width="2"/>
+        <g fill="#5C7185" opacity=".8">
+          <rect x="136" y="104" width="44" height="5" rx="2"/><rect x="136" y="114" width="32" height="5" rx="2"/>
+          <rect x="260" y="104" width="44" height="5" rx="2"/><rect x="260" y="114" width="32" height="5" rx="2"/>
+        </g>
+        <path d="M150 156 H290 L300 172 H140 Z" fill="url(#stageG)"/>
+        <rect x="140" y="172" width="160" height="7" fill="#7A5529"/>
+        <!-- speaker at the podium, seen from the back of the room -->
+        <g>
+          <path d="M212 156 q-5 -18 8 -20 q13 2 8 20 Z" fill="#3A404C"/>
+          <circle cx="220" cy="130" r="6.5" fill="#3B2E23"/>
+          <path d="M228 140 q10 2 10 12" stroke="#3A404C" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M236 142 l12 -8" stroke="#C08F63" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </g>
+        <path d="M196 156 h20 l-3 -26 h-14 Z" fill="#A9814F"/>
+        <rect x="194" y="126" width="24" height="6" rx="2" fill="#C09A63"/>
+
+        <!-- Light falling through the high windows -->
+        <path d="M96 40 L134 40 L176 214 L104 214 Z" fill="url(#beam)" opacity=".5"/>
+        <path d="M306 40 L342 40 L330 214 L282 214 Z" fill="url(#beam)" opacity=".35"/>
+
+        <!-- Congregation -->
+        <g id="crowdFar"></g>
+        <g id="crowdMid"></g>
+
+        <!-- Sara, standing out subtly in the crowd -->
+        <g class="spot">
+          <ellipse cx="150" cy="186" rx="62" ry="54" fill="url(#saraGlow)"/>
+          <ellipse cx="150" cy="188" rx="40" ry="36" fill="url(#saraGlow)"/>
+          <g transform="translate(150 198) scale(.66)">
+            <path d="M-34 -6 Q-40 -60 -2 -64 Q36 -60 30 -6 Q46 26 42 74 L-44 74 Q-48 26 -34 -6 Z" fill="#8B5A3A"/>
+            <path d="M-26 6 Q-2 -4 22 6 L32 40 L28 74 L-30 74 L-34 40 Z" fill="#FBFAF7"/>
+            <ellipse cx="-2" cy="-14" rx="21" ry="25" fill="#F5D6C3"/>
+            <path d="M-24 -8 Q-28 -46 -2 -49 Q24 -46 20 -8 Q17 -28 7 -34 Q-2 -38 -11 -34 Q-21 -28 -24 -8 Z" fill="#8B5A3A"/>
+            <path d="M-14 -25 Q-9 -28 -4 -25 M0 -25 Q5 -28 10 -25" stroke="#7A4E32" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <path d="M-13 -18 Q-9 -22 -5 -18 M1 -18 Q5 -22 9 -18" stroke="#3A2418" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+            <circle cx="-16" cy="-9" r="5" fill="#F29AAE" opacity=".4"/><circle cx="12" cy="-9" r="5" fill="#F29AAE" opacity=".4"/>
+            <path d="M-6 -4 Q-2 -1 2 -4" stroke="#B5525E" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </g>
+        </g>
+
+        <!-- Howard, foreground, turned to look across the room -->
+        <g transform="translate(340 200)">
+          <path d="M-44 100 Q-48 32 -2 20 Q44 32 40 100 Z" fill="#2B2B33"/>
+          <path d="M-14 20 Q-2 32 12 20" fill="#B9845F" stroke="#3A3A44" stroke-width="2"/>
+          <g transform="rotate(-9) translate(0 -26) scale(.52) translate(-255 -120)">
+            <ellipse cx="213" cy="124" rx="8" ry="12" fill="#BF8A64"/>
+            <ellipse cx="297" cy="124" rx="8" ry="12" fill="#BF8A64"/>
+            <path d="M213 110 Q213 70 255 68 Q297 70 297 110 L295 138 Q290 170 255 174 Q220 170 215 138 Z" fill="#C99673"/>
+            <path d="M210 118 Q204 76 230 62 Q238 50 252 54 Q260 44 270 52 Q298 58 301 96 L300 118 Q295 94 283 88 Q262 80 240 84 Q222 88 216 104 Z" fill="#1A1614"/>
+            <path d="M224 100 Q235 90 247 98 M261 98 Q272 92 283 100" stroke="#1A1614" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <circle cx="233" cy="119" r="3.6" fill="#1A1614"/><circle cx="269" cy="119" r="3.6" fill="#1A1614"/>
+            <g fill="rgba(255,255,255,.18)" stroke="#2A2A2A" stroke-width="2.6">
+              <rect x="219" y="107" width="31" height="22" rx="9"/><rect x="256" y="107" width="31" height="22" rx="9"/>
+            </g>
+            <path d="M250 115 Q253 111 256 115 M219 113 L206 116 M287 113 L300 116" stroke="#2A2A2A" stroke-width="2.4" fill="none"/>
+            <path d="M255 124 Q250 137 257 139" stroke="#9E6E4E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M244 147 Q255 143 266 147" stroke="#3A2A22" stroke-width="2.5" opacity=".4" fill="none" stroke-linecap="round"/>
+            <path d="M243 153 Q252 157 264 152" stroke="#7A3F33" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          </g>
+          <text class="qmark" x="34" y="-64" font-family="Fraunces, Georgia, serif" font-size="30" fill="#6B4A6B">?</text>
+        </g>
+      </svg>
+
+      <p class="where">Filadelfia Church &middot; Stockholm, Sweden</p>
+      <div class="story">
+        <p>It all began at Filadelfia Church in Stockholm, at a Johnny Chang event in Sweden. In a place filled with unfamiliar faces, there was one person who somehow caught my attention.</p>
+        <p>I didn't know her name. I didn't know her story. I didn't even know who she was. But there was something about her that stood out. She carried herself with a boldness and courage that was hard to ignore.</p>
+        <p>I remember watching her from a distance and wondering, <em>&ldquo;Who is this girl?&rdquo;</em></p>
+        <p>At the time, I had no idea that the stranger who caught my attention that day was Sara &mdash; or that this simple moment of curiosity would become the beginning of our journey.</p>
+      </div>
+      <h2 class="script beg">Where it all began</h2>
     </div>
   </section>
 </main>
 
 <nav aria-label="Card navigation">
   <button id="back" type="button" hidden>Back</button>
-  <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+  <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
   <button id="next" type="button">Next</button>
 </nav>
 
@@ -598,6 +736,46 @@
     st.style.animationDelay = -rand() * 3 + "s";
     night.appendChild(st);
   }
+
+  // Window band and balcony rail, following the room's curve
+  const hw = document.getElementById("highWindows");
+  const br = document.getElementById("balconyRail");
+  const curveY = x => 40 + Math.sin((x / 440) * Math.PI) * 14;
+  for (let x = 8; x < 440; x += 26) {
+    const y = curveY(x);
+    hw.appendChild(el("rect", { x, y: y - 6, width: 15, height: 22, rx: 1.5, fill: "url(#winLight)", stroke: "#C3B49A", "stroke-width": 2 }));
+  }
+  for (let x = 4; x < 440; x += 13) {
+    const y = 62 + Math.sin((x / 440) * Math.PI) * 42;
+    br.appendChild(el("line", { x1: x, y1: y, x2: x, y2: y + 22, stroke: "#C9B99C", "stroke-width": 2, opacity: .85 }));
+  }
+
+  // Congregation: rows of people seen from behind, dimmed so Sara reads first
+  const HAIR = ["#2E241E", "#3F3026", "#5A4432", "#8A6A45", "#B99A64", "#1F1A17", "#6E5A44", "#4A3B2E"];
+  const COAT = ["#4C5566", "#3B4250", "#5E5347", "#6B5B6E", "#43514B", "#2F3742", "#7A6B5C", "#555F6B"];
+  const person = (x, y, s, dim) => {
+    const g = el("g", { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${s.toFixed(3)})`, opacity: dim });
+    g.appendChild(el("path", { d: "M-16 28 Q-16 2 0 0 Q16 2 16 28 Z", fill: COAT[Math.floor(rand() * COAT.length)] }));
+    g.appendChild(el("circle", { cx: 0, cy: -10, r: 9.5, fill: HAIR[Math.floor(rand() * HAIR.length)] }));
+    return g;
+  };
+  const far = document.getElementById("crowdFar");
+  const mid = document.getElementById("crowdMid");
+  [
+    [far, 176, 0.40, 22, 0.42],
+    [far, 186, 0.48, 19, 0.48],
+    [mid, 198, 0.58, 17, 0.52],
+    [mid, 214, 0.72, 15, 0.56],
+    [mid, 236, 0.92, 12, 0.60],
+    [mid, 266, 1.18, 10, 0.66]
+  ].forEach(([host, y, s, n, dim]) => {
+    for (let i = 0; i < n; i++) {
+      const x = ((i + 0.5) / n) * 470 - 15 + (rand() - 0.5) * 9;
+      if (y > 192 && y < 218 && x > 108 && x < 196) continue;   // keep Sara clear
+      if (y > 222 && x > 276) continue;                          // keep Howard clear
+      host.appendChild(person(x, y + (rand() - 0.5) * 3, s * (0.9 + rand() * 0.2), dim));
+    }
+  });
 
   // Navigation
   const screens = [...document.querySelectorAll(".screen")];
