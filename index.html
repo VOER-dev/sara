@@ -157,6 +157,10 @@
   body[data-step="12"] #lakeday{opacity:.95}
   body[data-step="13"] #glowchat{opacity:.95}
   body[data-step="14"] #dreamlight{opacity:.95}
+  #graceday{position:fixed;inset:0;pointer-events:none;opacity:0;transition:opacity 1.8s ease;
+    background:linear-gradient(120deg,#4A5568 0%,#7C6E72 42%,#D9A86C 78%,#F4DCAE 100%)}
+  body[data-step="15"] #graceday{opacity:.95}
+  html body[data-step="15"] #petals{opacity:0}
   html body[data-step="11"] #petals,html body[data-step="12"] #petals,
   html body[data-step="13"] #petals,html body[data-step="14"] #petals{opacity:0}
   html body[data-step="6"] #petals,html body[data-step="7"] #petals,
@@ -341,6 +345,7 @@
 <div id="lakeday" aria-hidden="true"></div>
 <div id="glowchat" aria-hidden="true"></div>
 <div id="dreamlight" aria-hidden="true"></div>
+<div id="graceday" aria-hidden="true"></div>
 <div id="petals" aria-hidden="true"></div>
 
 <main>
@@ -1221,13 +1226,95 @@
       </svg>
       <p class="shotlabel">The house she's been picturing</p>
       <p class="line">Then she told me about the house she has been picturing her whole life. Two storeys. Seven children running through it. A gym with a big mirror lit all the way around, a walk-in closet, flowers in every room, and canvases waiting for her to paint on. She described it so plainly, like she had already walked through it a hundred times. I listened, and the builder in me thought: I could make that.</p>
+      <p class="hint">Click next.</p>
+    </div>
+  </section>
+
+  <!-- Scene 7: through the hard times -->
+  <section class="screen shot" id="s15" aria-label="Scene seven: the rough days, and praying through them together">
+    <div class="note">
+      <svg class="shotpic" viewBox="0 0 440 300" role="img" aria-label="Two panels: on the left, Howard and Sara standing apart in the rain; on the right, the two of them together in warm light with their heads bowed in prayer.">
+        <defs>
+          <linearGradient id="stormSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3D4657"/><stop offset="1" stop-color="#6B7385"/>
+          </linearGradient>
+          <linearGradient id="graceSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F6DCA6"/><stop offset=".6" stop-color="#F0BE83"/><stop offset="1" stop-color="#E4A777"/>
+          </linearGradient>
+          <linearGradient id="seam" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#6B7385" stop-opacity="0"/>
+            <stop offset=".5" stop-color="#F3D9A4" stop-opacity=".85"/>
+            <stop offset="1" stop-color="#F6DCA6" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="rayG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFF7DE" stop-opacity=".9"/><stop offset="1" stop-color="#FFF7DE" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <!-- left: the rough days -->
+        <rect width="214" height="300" fill="url(#stormSky)"/>
+        <g fill="#2F3747" opacity=".8">
+          <ellipse cx="60" cy="48" rx="56" ry="20"/><ellipse cx="120" cy="40" rx="44" ry="16"/><ellipse cx="176" cy="54" rx="40" ry="14"/>
+        </g>
+        <g id="rain" stroke="#C6D2E2" stroke-width="1.6" opacity=".55"></g>
+        <rect y="246" width="214" height="54" fill="#4B5261"/>
+        <path d="M0 252 Q110 242 214 250 V300 H0 Z" fill="#414857"/>
+        <g opacity=".95">
+          <g transform="translate(56 204) scale(.88)">
+            <path d="M-20 60 Q-22 8 0 -2 Q22 8 20 60 Z" fill="#DCD8D2"/>
+            <path d="M-17 14 q-10 16 -6 30" stroke="#D5B7A4" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M17 14 q10 16 6 30" stroke="#D5B7A4" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M-11 -16 Q-15 -46 0 -49 Q15 -46 11 -16 Q13 2 9 22 Q0 27 -9 22 Q-13 2 -11 -16 Z" fill="#6E4630"/>
+            <path d="M-6 -40 q6 -3 12 0" stroke="#8B5A3A" stroke-width="1.8" fill="none" opacity=".6"/>
+          </g>
+          <g transform="translate(154 198) scale(.9)">
+            <path d="M-26 64 Q-30 10 0 0 Q30 10 26 64 Z" fill="#24242C"/>
+            <path d="M22 16 q12 16 8 32" stroke="#24242C" stroke-width="11" fill="none" stroke-linecap="round"/>
+            <use href="#hHead" transform="translate(2 -28) rotate(12) scale(.5)"/>
+            <path d="M-4 -16 q9 -2 17 2" stroke="#6B3931" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          </g>
+        </g>
+        <text x="60" y="284" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="10" letter-spacing="2.4" fill="#C6D2E2">THE HARD DAYS</text>
+
+        <!-- right: giving it to God -->
+        <rect x="214" width="226" height="300" fill="url(#graceSky)"/>
+        <path d="M262 0 L306 0 L288 300 L252 300 Z" fill="url(#rayG)" opacity=".7"/>
+        <path d="M330 0 L372 0 L378 300 L340 300 Z" fill="url(#rayG)" opacity=".5"/>
+        <circle cx="326" cy="34" r="44" fill="#FFF3CC" opacity=".55"/>
+        <rect x="214" y="246" width="226" height="54" fill="#C08F5C"/>
+        <path d="M214 252 Q330 240 440 250 V300 H214 Z" fill="#B07F4F"/>
+        <g id="petalsRight"></g>
+        <!-- the two of them, heads bowed, hands joined -->
+        <g transform="translate(302 204) scale(.88)">
+          <path d="M-24 60 Q-26 8 0 -2 Q26 8 24 60 Z" fill="#FBFAF7"/>
+          <path d="M20 16 q10 12 4 24" stroke="#F1CDB8" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M-20 16 q-10 14 -5 26" stroke="#F1CDB8" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <use href="#sHead" transform="translate(0 -26) rotate(9) scale(.94)"/>
+          <path d="M-5 -26 q5 3 10 -1" stroke="#B5525E" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(378 196) scale(.9)">
+          <path d="M-26 66 Q-30 12 0 2 Q30 12 26 66 Z" fill="#2B2B33"/>
+          <path d="M-22 18 q-14 10 -10 24" stroke="#2B2B33" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <use href="#hHead" transform="translate(-4 -28) rotate(-12) scale(.5)"/>
+          <path d="M-12 -16 q9 4 17 -1" stroke="#7A3F33" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        </g>
+        <path d="M326 220 q16 -12 32 -2" stroke="#F1CDB8" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="342" cy="214" rx="10" ry="8" fill="#DCA87F"/>
+        <path d="M342 198 q-5 -8 0 -14 q5 6 0 14 Z" fill="#FFF3CC" opacity=".8"/>
+
+        <!-- seam of light between the panels -->
+        <rect x="196" width="36" height="300" fill="url(#seam)"/>
+        <text x="330" y="284" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="10" letter-spacing="2.4" fill="#5C3A22">GOD FIRST</text>
+      </svg>
+      <p class="shotlabel">Through it all</p>
+      <p class="line">There have been miscommunications and hiccups, days that felt heavier than they needed to be. But every one of them has ended the same way: we give it to God. We pray for each other through the good and the bad, and we keep Him first, because everything else we're building only holds if that part holds. The hard days haven't pulled us apart. They've shown us what we already have &mdash; with each other, and in ourselves.</p>
     </div>
   </section>
 </main>
 
 <nav aria-label="Card navigation">
   <button id="back" type="button" hidden>Back</button>
-  <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <button id="next" type="button">Next</button>
 </nav>
 
@@ -1521,6 +1608,18 @@
       g.appendChild(el("circle", { cx: 0, cy: -16, r: 10, fill: HAIR[i % HAIR.length] }));
       kids.appendChild(g);
     }
+  }
+
+  // Scene 7: rain on the left panel, petals of light on the right
+  const rainG = document.getElementById("rain");
+  if (rainG) for (let i = 0; i < 70; i++) {
+    const x = rand() * 214, y = rand() * 250;
+    rainG.appendChild(el("line", { x1: x, y1: y, x2: x - 4, y2: y + 14 }));
+  }
+  const pr = document.getElementById("petalsRight");
+  if (pr) for (let i = 0; i < 16; i++) {
+    const x = 226 + rand() * 206, y = 60 + rand() * 180;
+    pr.appendChild(el("circle", { cx: x, cy: y, r: 1.6 + rand() * 3, fill: "#FFF6DC", opacity: (.3 + rand() * .5).toFixed(2) }));
   }
 
   // Navigation
