@@ -130,7 +130,7 @@
   .line em{font-style:italic;color:var(--dusk)}
   .fade-seq{opacity:0}
   .shot.active .fade-seq{animation:seqin .9s ease forwards}
-  @keyframes seqin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes seqin{from{opacity:0}to{opacity:1}}
   .push{transform:scale(1)}
   .shot.active .push{animation:push 6s ease-out forwards}
   @keyframes push{from{transform:scale(1)}to{transform:scale(1.14)}}
@@ -147,6 +147,18 @@
   #darkroom{background:linear-gradient(#141420 0%,#22203A 60%,#2E2A44 100%)}
   body[data-step="6"] #warmroom,body[data-step="7"] #warmroom,body[data-step="8"] #warmroom{opacity:.95}
   body[data-step="9"] #darkroom,body[data-step="10"] #darkroom{opacity:.97}
+  #street{position:fixed;inset:0;pointer-events:none;opacity:0;transition:opacity 1.8s ease;
+    background:linear-gradient(#A8C4DC 0%,#CFDCE4 55%,#DFD6C6 100%)}
+  body[data-step="11"] #street{opacity:.95}
+  #lakeday,#glowchat,#dreamlight{position:fixed;inset:0;pointer-events:none;opacity:0;transition:opacity 1.8s ease}
+  #lakeday{background:linear-gradient(#B7D6E8 0%,#D9E6E0 55%,#E9E0C9 100%)}
+  #glowchat{background:linear-gradient(#5B3E63 0%,#96566E 55%,#D08B7E 100%)}
+  #dreamlight{background:linear-gradient(#EBD3DC 0%,#F3E3DA 50%,#E6E9D6 100%)}
+  body[data-step="12"] #lakeday{opacity:.95}
+  body[data-step="13"] #glowchat{opacity:.95}
+  body[data-step="14"] #dreamlight{opacity:.95}
+  html body[data-step="11"] #petals,html body[data-step="12"] #petals,
+  html body[data-step="13"] #petals,html body[data-step="14"] #petals{opacity:0}
   html body[data-step="6"] #petals,html body[data-step="7"] #petals,
   html body[data-step="8"] #petals,html body[data-step="9"] #petals,
   html body[data-step="10"] #petals{opacity:0}
@@ -325,6 +337,10 @@
 <div id="chapel" aria-hidden="true"></div>
 <div id="warmroom" aria-hidden="true"></div>
 <div id="darkroom" aria-hidden="true"></div>
+<div id="street" aria-hidden="true"></div>
+<div id="lakeday" aria-hidden="true"></div>
+<div id="glowchat" aria-hidden="true"></div>
+<div id="dreamlight" aria-hidden="true"></div>
 <div id="petals" aria-hidden="true"></div>
 
 <main>
@@ -910,14 +926,308 @@
         <p class="kicker">Howard &amp; Sara</p>
         <h2 class="script big">Our Journey</h2>
         <p class="sub">Scene 2 &mdash; Who is this girl?</p>
+        <p class="hint">Click next &mdash; Scene 3.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Scene 3 -->
+  <section class="screen shot" id="s11" aria-label="Scene three: Sara visits Victory Outreach Stockholm for the first time">
+    <div class="note">
+      <svg class="shotpic" viewBox="0 0 440 300" role="img" aria-label="Sara stepping through the front doors of the Victory Outreach Stockholm church building on a cool bright day.">
+        <defs>
+          <linearGradient id="nordicSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#86AEd0"/><stop offset="1" stop-color="#D3E2EC"/>
+          </linearGradient>
+          <linearGradient id="facade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E8D9BE"/><stop offset="1" stop-color="#CDB894"/>
+          </linearGradient>
+          <linearGradient id="doorGlow" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFE9B8"/><stop offset="1" stop-color="#F3C877"/>
+          </linearGradient>
+          <radialGradient id="spill"><stop offset="0" stop-color="#FFE3AC" stop-opacity=".85"/><stop offset="1" stop-color="#FFE3AC" stop-opacity="0"/></radialGradient>
+        </defs>
+
+        <rect width="440" height="300" fill="url(#nordicSky)"/>
+        <g fill="#FFFFFF" opacity=".45">
+          <ellipse cx="80" cy="34" rx="46" ry="11"/><ellipse cx="120" cy="44" rx="30" ry="8"/>
+          <ellipse cx="350" cy="26" rx="52" ry="10"/>
+        </g>
+
+        <!-- Building -->
+        <rect x="58" y="42" width="324" height="200" fill="url(#facade)"/>
+        <rect x="52" y="34" width="336" height="14" rx="3" fill="#B9A382"/>
+        <rect x="58" y="150" width="324" height="7" fill="#BCA786"/>
+        <g id="vo2f"></g>
+        <!-- Sign band -->
+        <rect x="126" y="108" width="190" height="32" rx="4" fill="#3C4C63"/>
+        <text x="221" y="124" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="13" letter-spacing="1.6" fill="#F3E3C6">VICTORY OUTREACH</text>
+        <text x="221" y="135" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="8" letter-spacing="3" fill="#D9BE8E">STOCKHOLM</text>
+
+        <!-- Doorway with light spilling out -->
+        <ellipse cx="221" cy="238" rx="108" ry="46" fill="url(#spill)"/>
+        <rect x="176" y="160" width="92" height="88" rx="4" fill="#5B4632"/>
+        <rect x="182" y="166" width="80" height="82" fill="url(#doorGlow)"/>
+        <path d="M182 166 h34 v82 h-34 Z" fill="#7B5C3C"/>
+        <path d="M216 166 h6 v82 h-6 Z" fill="#4A3826" opacity=".5"/>
+        <g opacity=".5" fill="#B4864B">
+          <rect x="228" y="192" width="26" height="30" rx="2"/><rect x="228" y="176" width="26" height="12" rx="2"/>
+        </g>
+        <rect x="168" y="152" width="108" height="10" rx="3" fill="#3C4C63"/>
+        <!-- steps -->
+        <rect x="160" y="248" width="124" height="8" fill="#C8BCA8"/>
+        <rect x="150" y="256" width="144" height="9" fill="#BFB19B"/>
+        <rect y="265" width="440" height="35" fill="#A79B8A"/>
+        <g stroke="#96897A" stroke-width="1.5">
+          <path d="M0 276 H440 M0 288 H440 M60 265 V300 M160 265 V300 M280 265 V300 M380 265 V300"/>
+        </g>
+
+        <!-- greeter holding the door -->
+        <g transform="translate(272 196) scale(.88)">
+          <path d="M-16 56 Q-18 12 0 4 Q18 12 16 56 Z" fill="#455066"/>
+          <path d="M-14 16 q-14 6 -16 18" stroke="#455066" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <circle cx="-30" cy="36" r="5" fill="#C08F63"/>
+          <circle cx="0" cy="-10" r="13" fill="#D9A97E"/>
+          <path d="M-13 -13 q3 -16 13 -16 q11 0 13 16 q-6 -7 -13 -7 q-8 0 -13 7 Z" fill="#2E241E"/>
+          <circle cx="-5" cy="-9" r="2" fill="#241C16"/><circle cx="5" cy="-9" r="2" fill="#241C16"/>
+          <path d="M-5 -2 q5 4 10 0" stroke="#8A5A46" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- Sara, mid-step, walking in (seen from behind) -->
+        <g transform="translate(212 196) scale(.92)">
+          <ellipse cx="2" cy="74" rx="22" ry="6" fill="#7C7263" opacity=".3"/>
+          <path d="M-10 44 L-16 72 L-6 74 L2 48 Z" fill="#F1CDB8"/>
+          <path d="M8 46 L16 70 L26 66 L16 44 Z" fill="#F1CDB8"/>
+          <ellipse cx="-11" cy="74" rx="9" ry="4" fill="#B98A64"/><ellipse cx="22" cy="67" rx="9" ry="4" fill="#B98A64"/>
+          <path d="M-18 20 L18 20 Q26 42 30 54 Q0 62 -26 52 Q-22 38 -18 20 Z" fill="url(#skirtPrint)" stroke="#9DBBD3" stroke-width="1.2"/>
+          <path d="M-19 -6 Q0 -14 19 -6 L25 18 L17 24 L-17 24 L-25 18 Z" fill="#FBFAF7"/>
+          <path d="M21 2 q9 12 7 24" stroke="#F1CDB8" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M-21 2 q-9 12 -7 24" stroke="#F1CDB8" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M-11 -12 Q-15 -42 0 -45 Q15 -42 11 -12 Q13 6 9 26 Q0 30 -9 26 Q-13 6 -11 -12 Z" fill="#8B5A3A"/>
+          <path d="M-6 -36 Q0 -40 6 -36 M-6 0 Q0 3 6 0" stroke="#B78356" stroke-width="1.8" fill="none" opacity=".65"/>
+          <rect x="20" y="22" width="12" height="16" rx="3" fill="#1F1F24" transform="rotate(12 26 30)"/>
+        </g>
+
+        <!-- street details -->
+        <g transform="translate(66 196)">
+          <rect x="-3" y="-30" width="6" height="74" fill="#4C5560"/>
+          <path d="M-12 -34 q12 -12 24 0 Z" fill="#6E7884"/>
+        </g>
+        <g transform="translate(372 234) scale(.9)" opacity=".9">
+          <circle cx="-16" cy="12" r="12" fill="none" stroke="#4C5560" stroke-width="3"/>
+          <circle cx="16" cy="12" r="12" fill="none" stroke="#4C5560" stroke-width="3"/>
+          <path d="M-16 12 L-2 -6 L16 12 M-2 -6 L6 -6" stroke="#8C6A4E" stroke-width="3" fill="none"/>
+        </g>
+        <g transform="translate(108 226) scale(.8)" opacity=".75">
+          <path d="M-14 48 Q-14 8 0 2 Q14 8 14 48 Z" fill="#5E5347"/>
+          <circle cx="0" cy="-8" r="9" fill="#3F3026"/>
+        </g>
+      </svg>
+      <p class="shotlabel">Victory Outreach Stockholm</p>
+      <p class="line" id="voLine">A few days later she came to see Victory Outreach Stockholm for herself. She showed up alone, the way she seemed to do most things, and walked through the front doors into a room full of people she had never met. She shook hands, asked her questions, and listened while people told her what this place had done for their lives. She didn't look nervous. She looked like someone who wanted to understand.</p>
+      <p class="hint">Click next.</p>
+    </div>
+  </section>
+
+  <!-- Scene 4: the first phone call -->
+  <section class="screen shot" id="s12" aria-label="Scene four: our first phone call, early morning by a lake">
+    <div class="note">
+      <svg class="shotpic" viewBox="0 0 440 300" role="img" aria-label="Howard on the phone early in the morning, standing in front of a still lake ringed with trees.">
+        <defs>
+          <linearGradient id="mornSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9CC3DF"/><stop offset=".6" stop-color="#D7E6EC"/><stop offset="1" stop-color="#F6E6C8"/>
+          </linearGradient>
+          <linearGradient id="lakeW" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9FBFCE"/><stop offset="1" stop-color="#6E8FA2"/>
+          </linearGradient>
+          <radialGradient id="mornSun"><stop offset="0" stop-color="#FFF6D8"/><stop offset="1" stop-color="#FFE8AE" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="440" height="300" fill="url(#mornSky)"/>
+        <circle cx="318" cy="118" r="62" fill="url(#mornSun)"/>
+        <circle cx="318" cy="118" r="17" fill="#FFF8E2"/>
+        <g id="pines"></g>
+        <rect y="168" width="440" height="88" fill="url(#lakeW)"/>
+        <g stroke="#CFE2EA" stroke-width="2" opacity=".7">
+          <path d="M300 186 H340 M292 196 H350 M304 206 H336 M286 216 H354 M300 228 H340"/>
+        </g>
+        <g fill="#FFFFFF" opacity=".45">
+          <ellipse cx="120" cy="176" rx="90" ry="8"/><ellipse cx="300" cy="172" rx="110" ry="6"/><ellipse cx="210" cy="188" rx="70" ry="5"/>
+        </g>
+        <path d="M0 250 Q120 240 240 250 T440 246 V300 H0 Z" fill="#7E8C5E"/>
+        <path d="M0 262 Q160 254 440 262 V300 H0 Z" fill="#65754A"/>
+        <g fill="#8A8371"><ellipse cx="54" cy="272" rx="16" ry="7"/><ellipse cx="392" cy="278" rx="20" ry="8"/></g>
+        <!-- birches, foreground left -->
+        <g>
+          <rect x="34" y="40" width="13" height="230" fill="#EDE7DC"/><rect x="92" y="18" width="10" height="250" fill="#E5DED2"/>
+          <g fill="#4C4740"><rect x="34" y="92" width="13" height="5"/><rect x="34" y="150" width="13" height="4"/><rect x="92" y="70" width="10" height="4"/><rect x="92" y="140" width="10" height="5"/></g>
+          <ellipse cx="42" cy="34" rx="34" ry="22" fill="#6F8C4F" opacity=".9"/><ellipse cx="98" cy="14" rx="40" ry="22" fill="#5F7D45" opacity=".9"/>
+        </g>
+        <!-- Howard on the call -->
+        <g transform="translate(236 196)">
+          <ellipse cx="0" cy="74" rx="30" ry="7" fill="#4E5B3C" opacity=".35"/>
+          <path d="M-30 74 Q-34 18 -2 8 Q30 18 26 74 Z" fill="#2B2B33"/>
+          <path d="M-10 8 Q-2 18 8 8" fill="#B9845F" stroke="#3A3A44" stroke-width="2"/>
+          <path d="M20 22 q16 -10 14 -30" stroke="#2B2B33" stroke-width="12" fill="none" stroke-linecap="round"/>
+          <use href="#hHead" transform="translate(0 -26) rotate(-6) scale(.5)"/>
+          <path d="M-8 -16 q9 6 18 -1" stroke="#7A3F33" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <rect x="22" y="-40" width="10" height="20" rx="3" fill="#1C1C24" transform="rotate(-12 27 -30)"/>
+          <ellipse cx="30" cy="-16" rx="7" ry="6" fill="#C4906B"/>
+        </g>
+        <!-- her end of the line -->
+        <g class="fade-seq" style="animation-delay:.9s">
+          <rect x="18" y="176" width="112" height="86" rx="14" fill="#FFF6EC" stroke="#E2CDBD" stroke-width="3"/>
+          <rect x="24" y="182" width="100" height="74" rx="10" fill="#F6E7D8"/>
+          <g transform="translate(74 232)">
+            <path d="M-24 22 Q-26 -8 0 -16 Q26 -8 24 22 Z" fill="#FBFAF7"/>
+            <path d="M18 -8 q14 -8 12 -26" stroke="#F1CDB8" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <use href="#sHead" transform="translate(0 -30) scale(.72)"/>
+            <path d="M-5 -32 q5 5 10 0 q-5 3 -10 0 Z" fill="#C4606C"/>
+            <rect x="20" y="-48" width="8" height="16" rx="3" fill="#2A2A33" transform="rotate(-14 24 -40)"/>
+          </g>
+          <path d="M134 202 q48 -26 92 -18" stroke="#FFF6EC" stroke-width="2.5" fill="none" stroke-dasharray="5 6" opacity=".9"/>
+        </g>
+      </svg>
+      <p class="shotlabel">Our first call</p>
+      <p class="line">Then she let me have her number. Our first call was early in the morning, standing in front of a lake with the trees still holding the cold. We talked about politics, about our families, about school stories neither of us had told in years. An hour disappeared. I hung up and realized I had been smiling the whole time.</p>
+    </div>
+  </section>
+
+  <!-- Scene 5: getting to know her -->
+  <section class="screen shot" id="s13" aria-label="Scene five: texting and calling, learning what she loves">
+    <div class="note">
+      <svg class="shotpic" viewBox="0 0 440 320" role="img" aria-label="Howard and Sara on their phones with the things she loves floating between them: lemons, garlic, onion, sushi, tacos, steak, chilies and cups of tea.">
+        <defs>
+          <linearGradient id="chatBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#4E3459"/><stop offset=".55" stop-color="#8E4F6B"/><stop offset="1" stop-color="#C87F72"/>
+          </linearGradient>
+          <radialGradient id="softGlow"><stop offset="0" stop-color="#FFD9C2" stop-opacity=".5"/><stop offset="1" stop-color="#FFD9C2" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="440" height="320" fill="url(#chatBg)"/>
+        <g id="bokeh"></g>
+        <ellipse cx="220" cy="150" rx="170" ry="120" fill="url(#softGlow)"/>
+
+        <!-- phone in the middle, messages flowing -->
+        <g transform="translate(220 150)">
+          <rect x="-54" y="-96" width="108" height="196" rx="18" fill="#1D1A28"/>
+          <rect x="-47" y="-88" width="94" height="180" rx="12" fill="#FBF4EE"/>
+          <rect x="-16" y="-84" width="32" height="6" rx="3" fill="#E4D8CE"/>
+          <g class="fade-seq" style="animation-delay:.3s">
+            <rect x="-40" y="-68" width="56" height="18" rx="9" fill="#E8DFF3"/>
+            <rect x="-12" y="-44" width="54" height="18" rx="9" fill="#D17A8F"/>
+            <rect x="-40" y="-20" width="46" height="16" rx="8" fill="#E8DFF3"/>
+            <rect x="-4" y="2" width="46" height="16" rx="8" fill="#D17A8F"/>
+            <rect x="-40" y="24" width="62" height="16" rx="8" fill="#E8DFF3"/>
+          </g>
+          <g class="fade-seq" style="animation-delay:1.4s">
+            <circle cx="0" cy="66" r="19" fill="#5FA97A"/>
+            <path d="M-8 60 q4 -6 9 -2 l3 4 q-3 4 -1 6 q4 4 8 5 q2 2 5 -2 l4 4 q-3 7 -10 5 q-14 -4 -18 -20 Z" fill="#fff"/>
+          </g>
+        </g>
+
+        <!-- the things she loves -->
+        <g id="likes"></g>
+
+        <!-- the two of them -->
+        <g transform="translate(58 244) scale(.9)">
+          <path d="M-28 70 Q-32 16 -2 6 Q28 16 24 70 Z" fill="#2B2B33"/>
+          <path d="M-9 6 Q-2 15 7 6" fill="#B9845F" stroke="#3A3A44" stroke-width="2"/>
+          <path d="M16 18 q14 -8 12 -26" stroke="#2B2B33" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <use href="#hHead" transform="translate(0 -26) rotate(8) scale(.48)"/>
+          <path d="M-8 -16 q9 6 18 -1" stroke="#7A3F33" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <rect x="20" y="-40" width="9" height="18" rx="3" fill="#15151C" transform="rotate(-14 24 -31)"/>
+        </g>
+        <g transform="translate(386 248) scale(.9)">
+          <path d="M-24 66 Q-26 12 0 2 Q26 12 24 66 Z" fill="#FBFAF7"/>
+          <path d="M-18 14 q-14 -6 -13 -24" stroke="#F1CDB8" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <use href="#sHead" transform="translate(0 -22) rotate(-6) scale(.82)"/>
+          <path d="M-7 -24 q7 7 14 0 q-7 4 -14 0 Z" fill="#C4606C"/>
+          <rect x="-32" y="-44" width="9" height="18" rx="3" fill="#2A2A33" transform="rotate(12 -28 -35)"/>
+        </g>
+      </svg>
+      <p class="shotlabel">Getting to know her</p>
+      <p class="line">After that we were always on the phone &mdash; texting all day, calling at night. I learned the small things first: lemons, onions, garlic in everything, sushi, Mexican food, steak medium well, and the spicier the better. I learned she loves the smell of tea more than almost anyone I know &mdash; rooibos, vanilla, ginger, mint, peppermint, chamomile, cinnamon, black tea with milk. And somewhere in all of it I noticed something bigger: the things she valued were the things I valued. We were getting closer without either of us announcing it.</p>
+    </div>
+  </section>
+
+  <!-- Scene 6: her dream house -->
+  <section class="screen shot" id="s14" aria-label="Scene six: the house Sara has been picturing">
+    <div class="note">
+      <svg class="shotpic" viewBox="0 0 440 330" role="img" aria-label="Cutaway of a two-storey dream house with a gym and lit mirror, a walk-in closet, flowers in every room, canvases to paint on, and seven children in the garden.">
+        <defs>
+          <linearGradient id="dreamSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#CFE0EE"/><stop offset="1" stop-color="#F2E7D8"/>
+          </linearGradient>
+          <linearGradient id="roofG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8E5F6E"/><stop offset="1" stop-color="#6E4655"/></linearGradient>
+        </defs>
+        <rect width="440" height="330" fill="url(#dreamSky)"/>
+        <g fill="#fff" opacity=".5"><ellipse cx="72" cy="34" rx="44" ry="12"/><ellipse cx="372" cy="26" rx="38" ry="10"/></g>
+        <rect y="256" width="440" height="74" fill="#A9C17E"/>
+        <path d="M0 262 Q220 244 440 262 V270 Q220 252 0 270 Z" fill="#93B06C"/>
+
+        <!-- house shell -->
+        <path d="M46 92 L220 24 L394 92 Z" fill="url(#roofG)"/>
+        <rect x="64" y="92" width="312" height="170" fill="#FBF5EC" stroke="#D9C9B6" stroke-width="3"/>
+        <rect x="64" y="174" width="312" height="8" fill="#D9C9B6"/>
+        <rect x="204" y="24" width="12" height="40" fill="#6E4655"/>
+
+        <!-- upstairs left: walk-in closet -->
+        <rect x="76" y="100" width="130" height="70" fill="#F6ECF0"/>
+        <text x="141" y="114" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="8" letter-spacing="1.4" fill="#9B7387">WALK-IN CLOSET</text>
+        <line x1="88" y1="126" x2="194" y2="126" stroke="#B99A7E" stroke-width="3"/>
+        <g id="closet"></g>
+        <rect x="88" y="152" width="30" height="16" rx="2" fill="#E6D6C4"/><rect x="122" y="152" width="30" height="16" rx="2" fill="#DEC9B4"/>
+        <rect x="160" y="150" width="34" height="18" rx="3" fill="#F0DDE4"/>
+
+        <!-- upstairs right: gym + lit mirror -->
+        <rect x="214" y="100" width="150" height="70" fill="#EFF1F0"/>
+        <text x="289" y="114" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="8" letter-spacing="1.4" fill="#7C8B89">GYM</text>
+        <rect x="222" y="120" width="52" height="46" rx="4" fill="#DCE7EA" stroke="#C0B49E" stroke-width="3"/>
+        <g id="bulbs"></g>
+        <g fill="#4A4F55">
+          <rect x="292" y="152" width="44" height="5" rx="2"/>
+          <circle cx="292" cy="154.5" r="8"/><circle cx="336" cy="154.5" r="8"/>
+          <rect x="300" y="136" width="30" height="4" rx="2"/><circle cx="300" cy="138" r="6"/><circle cx="330" cy="138" r="6"/>
+        </g>
+        <rect x="344" y="128" width="14" height="38" rx="5" fill="#B7C4C2"/>
+
+        <!-- downstairs left: painting corner -->
+        <rect x="76" y="186" width="128" height="70" fill="#FDF3E9"/>
+        <path d="M96 250 L112 200 L128 250 M104 226 H120" stroke="#B08A5E" stroke-width="3" fill="none"/>
+        <rect x="92" y="196" width="42" height="34" rx="2" fill="#FFFDF8" stroke="#C7B49A" stroke-width="2"/>
+        <path d="M96 224 q10 -18 20 -6 q6 8 14 2" stroke="#D17A8F" stroke-width="3" fill="none"/>
+        <circle cx="104" cy="206" r="4" fill="#F0C14B"/>
+        <rect x="150" y="196" width="24" height="30" rx="2" fill="#F3E7DA" stroke="#C7B49A" stroke-width="2"/>
+        <path d="M154 218 q6 -12 10 -2 q3 6 6 0" stroke="#7FA66E" stroke-width="2.4" fill="none"/>
+        <rect x="180" y="204" width="20" height="22" rx="2" fill="#F3E7DA" stroke="#C7B49A" stroke-width="2"/>
+        <circle cx="190" cy="215" r="5" fill="#E8A9BA"/>
+        <g fill="#8A6A4A"><rect x="150" y="236" width="52" height="4" rx="2"/></g>
+
+        <!-- downstairs right: living room full of flowers -->
+        <rect x="214" y="186" width="150" height="70" fill="#FCF6EF"/>
+        <path d="M232 250 q-4 -26 14 -28 h56 q18 2 14 28 Z" fill="#D6C3B0"/>
+        <rect x="238" y="228" width="72" height="8" rx="4" fill="#C3AF9B"/>
+        <g id="blooms"></g>
+        <rect x="330" y="200" width="30" height="24" rx="2" fill="#FFFDF8" stroke="#C7B49A" stroke-width="2"/>
+        <path d="M334 218 q8 -14 14 -4 q4 6 8 2" stroke="#7FA66E" stroke-width="2.4" fill="none"/>
+        <rect x="204" y="186" width="10" height="70" fill="#E4D5C4"/>
+        <path d="M204 256 v-14 h10 v-12 h10 v-12 h10 v-12 h10 v-12 h10 v-12 h10" stroke="#C9B49C" stroke-width="4" fill="none"/>
+
+        <!-- seven children in the garden -->
+        <g id="kids"></g>
+        <g class="fade-seq" style="animation-delay:1.2s" transform="translate(60 292)">
+          <path d="M0 -8 c-5 -5 -12 -9 -12 -16 c0 -5 4 -8 8 -8 c3 0 5 2 6 4 c1 -2 3 -4 6 -4 c4 0 8 3 8 8 c0 7 -11 11 -16 16z" fill="#D17A8F"/>
+          <text x="26" y="-8" font-family="Fraunces, Georgia, serif" font-size="14" fill="#7A3B63">seven of them</text>
+        </g>
+      </svg>
+      <p class="shotlabel">The house she's been picturing</p>
+      <p class="line">Then she told me about the house she has been picturing her whole life. Two storeys. Seven children running through it. A gym with a big mirror lit all the way around, a walk-in closet, flowers in every room, and canvases waiting for her to paint on. She described it so plainly, like she had already walked through it a hundred times. I listened, and the builder in me thought: I could make that.</p>
     </div>
   </section>
 </main>
 
 <nav aria-label="Card navigation">
   <button id="back" type="button" hidden>Back</button>
-  <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <button id="next" type="button">Next</button>
 </nav>
 
@@ -1106,6 +1416,112 @@
       host.appendChild(r);
     }
   });
+
+  // Upper-floor windows on the Stockholm street front
+  const vo = document.getElementById("vo2f");
+  if (vo) {
+    for (let x = 76; x < 372; x += 42) {
+      vo.appendChild(el("rect", { x, y: 58, width: 26, height: 38, rx: 2, fill: "#4E627C", stroke: "#F2EADA", "stroke-width": 3 }));
+      vo.appendChild(el("rect", { x: x + 11, y: 58, width: 4, height: 38, fill: "#F2EADA", opacity: .8 }));
+      vo.appendChild(el("rect", { x, y: 168, width: 26, height: 46, rx: 2, fill: "#4E627C", stroke: "#F2EADA", "stroke-width": 3, opacity: x < 150 || x > 300 ? 1 : 0 }));
+    }
+  }
+
+  // Scene 4: treeline
+  const pines = document.getElementById("pines");
+  if (pines) {
+    for (let i = 0; i < 46; i++) {
+      const x = rand() * 460 - 10, h = 26 + rand() * 40, w = 12 + rand() * 12;
+      const shade = ["#3E5B45", "#33503E", "#2C4738", "#496B4C"][Math.floor(rand() * 4)];
+      pines.appendChild(el("path", { d: `M${x} ${168 - h} L${x + w / 2} 170 L${x - w / 2} 170 Z`, fill: shade, opacity: .92 }));
+    }
+  }
+
+  // Scene 5: bokeh + the things she loves
+  const bok = document.getElementById("bokeh");
+  if (bok) for (let i = 0; i < 26; i++)
+    bok.appendChild(el("circle", { cx: rand() * 440, cy: rand() * 320, r: 3 + rand() * 12, fill: "#FFE2CE", opacity: (.05 + rand() * .12).toFixed(2) }));
+
+  const likes = document.getElementById("likes");
+  if (likes) {
+    const ICONS = {
+      lemon: g => { g.appendChild(el("ellipse", { rx: 13, ry: 9, fill: "#F5D14E", transform: "rotate(-20)" })); g.appendChild(el("path", { d: "M10 -8 q7 -5 10 -1 q-6 4 -10 1 Z", fill: "#7FA66E" })); },
+      garlic: g => { g.appendChild(el("path", { d: "M0 -13 q11 6 10 14 q-1 8 -10 8 q-9 0 -10 -8 q-1 -8 10 -14 Z", fill: "#F6F0E4", stroke: "#DDD2BE", "stroke-width": 1.4 })); g.appendChild(el("path", { d: "M0 -12 v22 M-6 -6 v14 M6 -6 v14", stroke: "#DDD2BE", "stroke-width": 1.2, fill: "none" })); },
+      onion: g => { g.appendChild(el("path", { d: "M0 -12 q12 7 11 13 q-1 8 -11 8 q-10 0 -11 -8 q-1 -6 11 -13 Z", fill: "#C9A4C8", stroke: "#A97FA8", "stroke-width": 1.4 })); g.appendChild(el("path", { d: "M0 -12 q-3 -5 -6 -6 M0 -12 q3 -5 7 -6", stroke: "#8FA36E", "stroke-width": 2, fill: "none" })); },
+      sushi: g => { g.appendChild(el("rect", { x: -12, y: -8, width: 24, height: 17, rx: 5, fill: "#FBF5EA", stroke: "#E2D7C6", "stroke-width": 1.4 })); g.appendChild(el("rect", { x: -12, y: -13, width: 24, height: 7, rx: 3, fill: "#F09B7E" })); g.appendChild(el("rect", { x: -3, y: -8, width: 6, height: 17, fill: "#3B4A3A" })); },
+      taco: g => { g.appendChild(el("path", { d: "M-14 8 a14 14 0 0 1 28 0 Z", fill: "#EFC25E" })); g.appendChild(el("path", { d: "M-11 4 q11 -8 22 0", stroke: "#7FA66E", "stroke-width": 4, fill: "none" })); g.appendChild(el("path", { d: "M-8 8 q8 -5 16 0", stroke: "#C56A4E", "stroke-width": 4, fill: "none" })); },
+      steak: g => { g.appendChild(el("path", { d: "M-15 -8 q16 -8 30 2 q4 12 -10 14 q-18 3 -22 -6 q-2 -7 2 -10 Z", fill: "#8C4B3C" })); g.appendChild(el("path", { d: "M-7 -1 q10 -5 18 2 q-8 5 -18 -2 Z", fill: "#D08C86" })); },
+      chili: g => { g.appendChild(el("path", { d: "M8 -12 q6 14 -4 20 q-12 7 -16 -2 q6 1 11 -5 q5 -6 3 -13 Z", fill: "#CC3E3E" })); g.appendChild(el("path", { d: "M8 -12 q-4 -5 -9 -4", stroke: "#6E8C4A", "stroke-width": 3, fill: "none", "stroke-linecap": "round" })); },
+      tea: g => {
+        g.appendChild(el("path", { d: "M-11 -4 h20 v9 a10 10 0 0 1 -20 0 Z", fill: "#FBF5EA", stroke: "#DCCFBD", "stroke-width": 1.4 }));
+        g.appendChild(el("path", { d: "M9 -1 q8 0 8 5 q0 5 -8 5", stroke: "#DCCFBD", "stroke-width": 2, fill: "none" }));
+        g.appendChild(el("path", { d: "M-4 -9 q4 -5 0 -9 M4 -9 q4 -5 0 -9", stroke: "#F2D9C6", "stroke-width": 2, fill: "none", "stroke-linecap": "round" }));
+        g.appendChild(el("rect", { x: -14, y: 13, width: 26, height: 3, rx: 1.5, fill: "#E4D3C0" }));
+      },
+      mint: g => { g.appendChild(el("path", { d: "M0 10 q-14 -6 -12 -18 q12 -3 12 18 Z", fill: "#6E9E63" })); g.appendChild(el("path", { d: "M0 10 q14 -6 12 -18 q-12 -3 -12 18 Z", fill: "#87B478" })); },
+      cinnamon: g => { g.appendChild(el("rect", { x: -13, y: -5, width: 26, height: 10, rx: 4, fill: "#A5703F", transform: "rotate(-18)" })); g.appendChild(el("rect", { x: -13, y: -5, width: 26, height: 10, rx: 4, fill: "#8A5A30", opacity: .5, transform: "rotate(14)" })); }
+    };
+    const placed = [
+      ["lemon", 92, 74], ["garlic", 150, 40], ["onion", 300, 40], ["sushi", 352, 84],
+      ["taco", 66, 150], ["steak", 378, 156], ["chili", 118, 206], ["tea", 330, 212],
+      ["mint", 172, 258], ["cinnamon", 268, 268], ["tea", 40, 96]
+    ];
+    placed.forEach(([kind, x, y], i) => {
+      const wrap = el("g", { transform: `translate(${x} ${y})`, class: "fade-seq" });
+      wrap.style.animationDelay = (0.4 + i * 0.18).toFixed(2) + "s";
+      const chip = el("g", {});
+      chip.appendChild(el("circle", { r: 22, fill: "#FFF6EC", opacity: .93 }));
+      ICONS[kind](chip);
+      wrap.appendChild(chip);
+      likes.appendChild(wrap);
+    });
+  }
+
+  // Scene 6: closet, mirror bulbs, flowers, seven kids
+  const closet = document.getElementById("closet");
+  if (closet) {
+    const CL = ["#F2C9D5", "#CFE0EE", "#E8DCC6", "#D8C9E4", "#F0DCC8", "#CBDBC6"];
+    for (let i = 0; i < 9; i++) {
+      const x = 92 + i * 11;
+      closet.appendChild(el("path", { d: `M${x} 126 l-5 8 v14 h10 v-14 Z`, fill: CL[i % CL.length] }));
+    }
+  }
+  const bulbs = document.getElementById("bulbs");
+  if (bulbs) {
+    const pts = [];
+    for (let x = 226; x <= 270; x += 11) pts.push([x, 124], [x, 162]);
+    for (let y = 135; y <= 151; y += 8) pts.push([226, y], [270, y]);
+    pts.forEach(([cx, cy]) => {
+      bulbs.appendChild(el("circle", { cx, cy, r: 4.4, fill: "#FFF0C2" }));
+      bulbs.appendChild(el("circle", { cx, cy, r: 2.2, fill: "#FFFDF2" }));
+    });
+  }
+  const blooms = document.getElementById("blooms");
+  if (blooms) {
+    [[226, 244, 1], [352, 246, 1.1], [274, 224, .8], [300, 224, .8], [246, 200, .9], [322, 196, .85]].forEach(([x, y, sc], i) => {
+      const g = el("g", { transform: `translate(${x} ${y}) scale(${sc})` });
+      g.appendChild(el("path", { d: "M-8 0 q8 16 16 0 q-2 12 -8 12 q-6 0 -8 -12 Z", fill: "#CBB7A2" }));
+      for (let k = 0; k < 5; k++) {
+        const a = -110 + k * 26, r = 13;
+        const px = Math.cos(a * Math.PI / 180) * r, py = Math.sin(a * Math.PI / 180) * r - 2;
+        g.appendChild(el("line", { x1: 0, y1: 0, x2: px, y2: py, stroke: "#7FA66E", "stroke-width": 1.6 }));
+        g.appendChild(el("circle", { cx: px, cy: py, r: 4.2, fill: ["#F29AAE", "#F7C7D3", "#EFD08A", "#E8A9BA", "#F4B7C6"][k] }));
+      }
+      blooms.appendChild(g);
+    });
+  }
+  const kids = document.getElementById("kids");
+  if (kids) {
+    const TOP = ["#F2C9D5", "#CFE0EE", "#EFD08A", "#CBDBC6", "#E8A9BA", "#D8C9E4", "#F0B49A"];
+    for (let i = 0; i < 7; i++) {
+      const x = 196 + i * 30, y = 296 + (i % 2) * 6, sc = .52 + (i % 3) * .05;
+      const g = el("g", { transform: `translate(${x} ${y}) scale(${sc})`, class: "fade-seq" });
+      g.style.animationDelay = (0.5 + i * 0.15).toFixed(2) + "s";
+      g.appendChild(el("path", { d: "M-13 22 Q-13 -2 0 -6 Q13 -2 13 22 Z", fill: TOP[i] }));
+      g.appendChild(el("circle", { cx: 0, cy: -16, r: 10, fill: HAIR[i % HAIR.length] }));
+      kids.appendChild(g);
+    }
+  }
 
   // Navigation
   const screens = [...document.querySelectorAll(".screen")];
